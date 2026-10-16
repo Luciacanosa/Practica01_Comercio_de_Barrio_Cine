@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cine Lido - Tu Cine de Barrio</title>
+
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <!-- Estilos con @theme según directrices Tailwind v4 -->
+    <style type="text/tailwindcss">
+      @theme {
+        --color-cine-fondo: #0d0d0f;
+        --color-cine-tarjeta: #1a1a1e;
+        --color-cine-rojo: #d90429;
+        --color-cine-dorado: #ffb703;
+        --color-cine-texto: #f8f9fa;
+        --font-titulo: "Limelight", "Playfair Display", serif;
+        --font-cuerpo: "Plus Jakarta Sans", sans-serif;
+      }
+    </style>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Limelight&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Librería JS Adicional: AOS (Animate On Scroll) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <!-- Hoja de Estilos Propia Externa -->
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body
+    class="bg-gray-100 dark:bg-cine-fondo text-gray-900 dark:text-cine-texto font-cuerpo transition-colors duration-300"
+  >
+    <!-- HEADER Y NAV -->
+    <header
+      class="sticky top-0 z-50 bg-white/90 dark:bg-cine-tarjeta/90 backdrop-blur-md border-b border-cine-dorado/20"
+    >
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-20"
+      >
+        <!-- LOGO -->
+        <a href="#" class="flex items-center gap-2">
+          <span
+            class="font-titulo text-2xl sm:text-3xl text-cine-rojo tracking-wider uppercase drop-shadow"
+            >CINE LIDO</span
+          >
+        </a>
+
+        <!-- NAV DESKTOP -->
+        <nav class="hidden md:flex items-center space-x-8 font-semibold">
+          <a
+            href="#cartelera"
+            class="hover:text-cine-dorado transition-colors focus:outline-none focus:ring-2 focus:ring-cine-dorado rounded"
+            >Cartelera</a
+          >
+          <a
+            href="#novedades"
+            class="hover:text-cine-dorado transition-colors focus:outline-none focus:ring-2 focus:ring-cine-dorado rounded"
+            >Ofertas & Ciclos</a
+          >
+          <a
+            href="#ambigu"
+            class="hover:text-cine-dorado transition-colors focus:outline-none focus:ring-2 focus:ring-cine-dorado rounded"
+            >El Ambigú</a
+          >
+          <a
+            href="#horarios"
+            class="hover:text-cine-dorado transition-colors focus:outline-none focus:ring-2 focus:ring-cine-dorado rounded"
+            >Horarios & Ubicación</a
+          >
+        </nav>
+
+        <!-- BOTONES DE ACCIÓN / DARK MODE / BOTÓN HAMBURGUESA -->
+        <div class="flex items-center gap-4">
+          <!-- Toggle Modo Oscuro -->
+          <button
+            id="theme-toggle"
+            type="button"
+            class="p-2 rounded-lg border border-gray-300 dark:border-gray-700 hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors focus:ring-2 focus:ring-cine-dorado"
+          >
+            <span id="theme-toggle-icon">🌙</span>
+          </button>
+
+          <!-- Botón Menú Mobile -->
+          <button
+            id="menu-btn"
+            class="md:hidden p-2 text-2xl focus:outline-none focus:ring-2 focus:ring-cine-dorado rounded"
+          >
+            🍔
+          </button>
+        </div>
+      </div>
+
+      <!-- MENÚ MOBILE DESPLEGABLE -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden bg-cine-tarjeta px-4 pt-2 pb-6 space-y-3 border-b border-cine-dorado/20"
+      >
+        <a href="#cartelera" class="block text-lg hover:text-cine-dorado"
+          >Cartelera</a
+        >
+        <a href="#novedades" class="block text-lg hover:text-cine-dorado"
+          >Ofertas & Ciclos</a
+        >
+        <a href="#ambigu" class="block text-lg hover:text-cine-dorado"
+          >El Ambigú</a
+        >
+        <a href="#horarios" class="block text-lg hover:text-cine-dorado"
+          >Horarios & Ubicación</a
+        >
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO / PORTADA -->
+      <section
+        class="relative py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden"
+      >
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
+          data-aos="fade-up"
+        >
+          <div>
+            <span
+              class="inline-block px-3 py-1 bg-cine-rojo text-white text-xs font-bold rounded-full mb-4 uppercase tracking-widest animate-pulse"
+            >
+              Estreno de la Semana
+            </span>
+            <h1
+              class="font-titulo text-4xl sm:text-6xl text-cine-dorado mb-6 leading-tight neon-text"
+            >
+              El Proyector de los Sueños
+            </h1>
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+              Disfruta de la magia del cine de formato clásico en 35mm.
+              Proyección analógica, sonido restaurado y las mejores palomitas
+              caseras del barrio.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a href="#cartelera" class="btn-cine-primary">Comprar Entradas</a>
+              <a href="#horarios" class="btn-cine-secondary">Ver Horarios</a>
+            </div>
+          </div>
+          <div class="relative flex justify-center">
+            <div class="proyector-light"></div>
+            <img
+              src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=800"
+              alt="Sala de cine"
+              class="rounded-2xl shadow-2xl border-2 border-cine-dorado/30 transform hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN CARTELERA / PRODUCTOS -->
+      <section id="cartelera" class="py-16 bg-gray-50 dark:bg-black/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2
+            class="font-titulo text-3xl sm:text-4xl text-cine-rojo mb-10 text-center"
+            data-aos="fade-down"
+          >
+            En Cartelera
+          </h2>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Tarjeta de Película 1 -->
+            <article
+              class="pelicula-card group"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="overflow-hidden rounded-t-xl relative">
+                <img
+                  src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=500"
+                  alt="Poster de película"
+                  class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <span
+                  class="absolute top-3 right-3 bg-cine-dorado text-black font-bold text-xs px-2 py-1 rounded"
+                  >7,50 €</span
+                >
+              </div>
+              <div
+                class="p-6 bg-white dark:bg-cine-tarjeta rounded-b-xl border border-t-0 border-gray-200 dark:border-gray-800"
+              >
+                <h3
+                  class="text-xl font-bold mb-2 group-hover:text-cine-dorado transition-colors"
+                >
+                  Noches de Neón
+                </h3>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-4">
+                  Dir. Stanley Kubrick | 120 min | VOSE
+                </p>
+                <button
+                  class="w-full py-2 bg-cine-rojo hover:bg-red-700 text-white font-semibold rounded transition-colors focus:ring-2 focus:ring-cine-dorado"
+                >
+                  Reservar Butaca
+                </button>
+              </div>
+            </article>
+
+            <!-- Más tarjetas... -->
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN NOVEDADES / OFERTAS -->
+      <section
+        id="novedades"
+        class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+      >
+        <h2
+          class="font-titulo text-3xl sm:text-4xl text-cine-dorado mb-10 text-center"
+          data-aos="fade-down"
+        >
+          Promociones & Ciclos
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div
+            class="p-8 bg-white dark:bg-cine-tarjeta rounded-2xl border-l-4 border-cine-rojo shadow-lg"
+            data-aos="right"
+          >
+            <h3 class="text-2xl font-bold mb-3">Miércoles del Espectador</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
+              Todas las entradas por tan solo <strong>4,50€</strong> presentando
+              tu carnet del barrio o de estudiante.
+            </p>
+            <span class="inline-block text-sm font-semibold text-cine-dorado"
+              >Todos los miércoles</span
+            >
+          </div>
+          <div
+            class="p-8 bg-white dark:bg-cine-tarjeta rounded-2xl border-l-4 border-cine-dorado shadow-lg"
+            data-aos="left"
+          >
+            <h3 class="text-2xl font-bold mb-3">Abono Melómano de Cine</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">
+              Bono de 5 películas por 25€ con consumición gratis en nuestro
+              ambigú.
+            </p>
+            <span class="inline-block text-sm font-semibold text-cine-rojo"
+              >Válido durante 3 meses</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN HORARIOS Y UBICACIÓN -->
+      <section id="horarios" class="py-16 bg-gray-50 dark:bg-black/30">
+        <div
+          class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12"
+        >
+          <div data-aos="fade-right">
+            <h2 class="font-titulo text-3xl text-cine-rojo mb-6">
+              Horarios de Taquilla
+            </h2>
+            <ul class="space-y-4 text-lg">
+              <li
+                class="flex justify-between border-b border-gray-300 dark:border-gray-700 pb-2"
+              >
+                <span>Lunes a Jueves:</span>
+                <span class="font-bold">16:30 - 22:30</span>
+              </li>
+              <li
+                class="flex justify-between border-b border-gray-300 dark:border-gray-700 pb-2"
+              >
+                <span>Viernes y Sábados:</span>
+                <span class="font-bold">16:00 - 00:30</span>
+              </li>
+              <li
+                class="flex justify-between border-b border-gray-300 dark:border-gray-700 pb-2"
+              >
+                <span>Domingos:</span>
+                <span class="font-bold">11:30 - 22:00</span>
+              </li>
+            </ul>
+          </div>
+          <div data-aos="fade-left">
+            <h2 class="font-titulo text-3xl text-cine-dorado mb-6">
+              Dónde Estamos
+            </h2>
+            <p class="mb-4">Calle de la Luz 14, Barrio de Malasaña, Madrid</p>
+            <div
+              class="w-full h-48 bg-gray-300 rounded-xl overflow-hidden shadow-inner flex items-center justify-center"
+            >
+              <p class="text-gray-600">
+                [Aquí se embebe el mapa o iframe de ubicación]
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer
+      class="bg-cine-tarjeta text-gray-400 py-10 border-t border-gray-800"
+    >
+      <div class="max-w-7xl mx-auto px-4 text-center space-y-4">
+        <p class="font-titulo text-cine-rojo text-xl">
+          Cine Lido - Tu espacio cinematográfico de confianza
+        </p>
+        <p class="text-sm">
+          Práctica 01 | Maquetación Web con Hojas de Estilo - UDIT 2026/2027
+        </p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
