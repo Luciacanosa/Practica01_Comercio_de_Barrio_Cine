@@ -1,3 +1,4 @@
+ luciabranch
 /* ventana modal ULTIMA OPORTUNIDAD JRPASS */
 .modal {
   display: none;
@@ -52,4 +53,29 @@
 
 .show-modal {
   display: flex;
+=======
+html,
+body {
+  cursor: none !important;
+  scroll-behavior: smooth;
+}
+
+/* cursor para informacion */
+
+.cursor {
+  width: 20px;
+  height: 20px;
+  border: 2px solid #6e0000;
+  background-color: #6e0000;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition:
+    transform 0.1s ease,
+    background-color 0.2s ease;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+ main
 }
