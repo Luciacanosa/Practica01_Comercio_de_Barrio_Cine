@@ -1,1 +1,82 @@
+/* css del index.html */
 
+/* mismo orden de capas que Tailwind v4: sus utilidades siempre ganan */
+@layer theme, base, components, utilities;
+
+/* ---------- BASE: foco visible en toda la web ---------- */
+@layer base {
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid #e63b2e;
+    outline-offset: 3px;
+  }
+}
+
+/* ---------- COMPONENTES: entrada de cine con muescas ---------- */
+@layer components {
+  .ticket {
+    -webkit-mask: radial-gradient(circle 14px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat,
+      radial-gradient(circle 14px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat;
+    mask: radial-gradient(circle 14px at 0 50%, transparent 98%, #000) left / 51% 100% no-repeat,
+      radial-gradient(circle 14px at 100% 50%, transparent 98%, #000) right / 51% 100% no-repeat;
+  }
+}
+
+/* ---------- UTILIDADES: clases de animación ---------- */
+@layer utilities {
+  .animate-haz {
+    animation: haz 9s ease-in-out infinite alternate;
+  }
+  .animate-tira {
+    animation: tira 6s linear infinite;
+  }
+  .animate-neon {
+    animation: parpadeo 4s infinite;
+  }
+  .animate-carnet {
+    animation: carnet 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+  .animate-latido {
+    animation: latido 1.8s ease-in-out infinite;
+  }
+}
+
+/* ---------- ANIMACIONES ---------- */
+@keyframes haz {
+  from { transform: rotate(8deg); opacity: 0.6; }
+  to { transform: rotate(16deg); opacity: 1; }
+}
+
+@keyframes tira {
+  from { background-position: 0 0; }
+  to { background-position: 360px 0; }
+}
+
+@keyframes parpadeo {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.25; }
+}
+
+@keyframes carnet {
+  from { opacity: 0; transform: perspective(800px) rotateY(-80deg) scale(0.9); }
+  to { opacity: 1; transform: perspective(800px) rotateY(0) scale(1); }
+}
+
+@keyframes latido {
+  0%, 100% { transform: scale(1) rotate(-3deg); }
+  50% { transform: scale(1.06) rotate(-3deg); }
+}
+
+/* respeta a quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .animate-haz,
+  .animate-tira,
+  .animate-neon,
+  .animate-carnet,
+  .animate-latido {
+    animation: none;
+  }
+}

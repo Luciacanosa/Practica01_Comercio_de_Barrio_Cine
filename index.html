@@ -1,13 +1,31 @@
 <!doctype html>
-<!-- cursor-none + **:cursor-none en <html>: oculta la flecha en toda la ventana, también en enlaces y botones -->
-<html lang="es" class="dark scroll-smooth cursor-none **:cursor-none">
+<html lang="es" class="scroll-smooth cursor-none **:cursor-none">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cine Lido - Tu Cine de Barrio</title>
+    <title>El Gallinero · Cine de barrio en Lavapiés</title>
+    <meta
+      name="description"
+      content="El Gallinero, cine de barrio en Lavapiés: cartelera en versión original, cineclub, matinales y alquiler de sala."
+    />
 
-    <!-- tipografías importadas de Adobe -->
-    <link rel="stylesheet" href="https://use.typekit.net/kie0hig.css" />
+    <!-- modo claro/oscuro: se aplica antes de pintar la página para que no parpadee -->
+    <script>
+      try {
+        if (localStorage.getItem("tema") !== "claro")
+          document.documentElement.classList.add("dark");
+      } catch (e) {
+        document.documentElement.classList.add("dark");
+      }
+    </script>
+
+    <!-- tipografías -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
@@ -15,41 +33,619 @@
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
+    <!-- Swiper -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css"
+    />
+
     <!-- Tailwind CSS v4 CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <!-- Estilos con @theme según directrices Tailwind v4 -->
+    <!-- sistema de diseño con @theme + modo oscuro con la clase .dark -->
     <style type="text/tailwindcss">
+      @custom-variant dark (&:where(.dark, .dark *));
       @theme {
-      }
-
-      /* refuerzo: ninguna parte de la página muestra la flecha del sistema */
-      @layer base {
-        *,
-        *::before,
-        *::after {
-          cursor: none !important;
-        }
+        --color-noche: #0e0e0e;
+        --color-butaca: #e63b2e;
+        --color-papel: #f2efe9;
+        --color-gris: #8a8780;
+        --font-cartel: "Archivo", sans-serif;
+        --font-mono: "Space Mono", monospace;
       }
     </style>
+
+    <!-- hoja de estilos propia: solo lo que Tailwind no resuelve (animaciones y forma de entrada) -->
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
-  <body class="min-h-screen">
-    <!-- cursor personalizado: circulito rojo -->
+  <body
+    class="min-h-screen bg-papel font-cartel text-noche transition-colors duration-300 selection:bg-butaca selection:text-noche dark:bg-noche dark:text-papel"
+  >
+    <!-- cursor personalizado -->
     <div
-      class="cursor-index pointer-events-none fixed top-0 left-0 z-[9999] size-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#6e0000] bg-[#6e0000] transition-[scale,background-color] duration-200 ease-in-out"
+      class="cursor-index pointer-events-none fixed top-0 left-0 z-[9999] size-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-butaca bg-butaca transition-[scale,background-color] duration-200 ease-in-out"
     ></div>
 
     <!-- HEADER Y NAV -->
-    <header class="">fguwebf</header>
+    <header
+      class="sticky top-0 z-50 border-b border-noche/15 bg-papel/90 backdrop-blur dark:border-papel/15 dark:bg-noche/90"
+    >
+      <nav
+        class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-10"
+        aria-label="Principal"
+      >
+        <a
+          href="index.html"
+          class="text-xl font-black tracking-tight uppercase md:text-2xl"
+        >
+          El Gallinero<span class="animate-neon text-butaca">.</span>
+        </a>
 
-    <main></main>
+        <ul
+          class="hidden gap-8 font-mono text-xs uppercase tracking-widest md:flex"
+        >
+          <li>
+            <a
+              href="index.html"
+              class="nav-link underline decoration-transparent decoration-2 underline-offset-4 transition hover:decoration-current focus-visible:decoration-current hover:text-butaca"
+              >Inicio</a
+            >
+          </li>
+          <li>
+            <a
+              href="cartelera.html"
+              class="nav-link underline decoration-transparent decoration-2 underline-offset-4 transition hover:decoration-current focus-visible:decoration-current hover:text-butaca"
+              >Cartelera</a
+            >
+          </li>
+          <li>
+            <a
+              href="socio.html"
+              class="nav-link underline decoration-transparent decoration-2 underline-offset-4 transition hover:decoration-current focus-visible:decoration-current hover:text-butaca"
+              >Hazte socio</a
+            >
+          </li>
+          <li>
+            <a
+              href="contacto.html"
+              class="nav-link underline decoration-transparent decoration-2 underline-offset-4 transition hover:decoration-current focus-visible:decoration-current hover:text-butaca"
+              >Contacto</a
+            >
+          </li>
+        </ul>
+
+        <div class="flex items-center gap-4">
+          <!-- botón modo claro / oscuro -->
+          <button
+            id="btn-tema"
+            class="border border-noche/30 px-3 py-2 font-mono text-xs uppercase tracking-widest transition-colors hover:border-butaca hover:text-butaca dark:border-papel/30"
+            aria-label="Cambiar modo claro u oscuro"
+          >
+            <span class="dark:hidden">☾ Oscuro</span>
+            <span class="hidden dark:inline">☀ Claro</span>
+          </button>
+          <!-- botón menú móvil -->
+          <button
+            id="btn-menu"
+            class="font-mono text-xs uppercase tracking-widest md:hidden"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="menu-movil"
+          >
+            Menú +
+          </button>
+        </div>
+      </nav>
+
+      <ul
+        id="menu-movil"
+        class="hidden border-t border-noche/15 px-5 py-6 font-mono text-sm uppercase tracking-widest md:hidden dark:border-papel/15"
+      >
+        <li class="py-2"><a href="index.html" class="nav-link">Inicio</a></li>
+        <li class="py-2">
+          <a href="cartelera.html" class="nav-link">Cartelera</a>
+        </li>
+        <li class="py-2">
+          <a href="socio.html" class="nav-link">Hazte socio</a>
+        </li>
+        <li class="py-2">
+          <a href="contacto.html" class="nav-link">Contacto</a>
+        </li>
+      </ul>
+    </header>
+
+    <main class="overflow-x-hidden">
+      <!-- PORTADA -->
+      <section
+        id="portada"
+        class="relative overflow-hidden border-b border-noche/15 dark:border-papel/15"
+      >
+        <!-- haz de luz del proyector -->
+        <div
+          class="pointer-events-none absolute -top-1/4 -right-1/4 h-[150%] w-2/3 origin-top-right animate-haz bg-linear-to-b from-butaca/25 via-butaca/5 to-transparent blur-2xl dark:from-papel/15 dark:via-papel/5"
+          aria-hidden="true"
+        ></div>
+
+        <div
+          class="relative mx-auto max-w-7xl px-5 pt-16 pb-20 md:px-10 md:pt-28 md:pb-32"
+        >
+          <p
+            class="mb-6 font-mono text-xs uppercase tracking-widest text-gris"
+            data-aos="fade-up"
+          >
+            ( Cine de barrio · Lavapiés )
+          </p>
+
+          <h1
+            class="text-[17vw] leading-[0.85] font-black tracking-tighter uppercase md:text-[10rem]"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            El<br />Gallinero<span class="animate-neon text-butaca">.</span>
+          </h1>
+
+          <p
+            class="mt-8 min-h-[2.5em] max-w-3xl text-2xl font-bold md:text-4xl"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            Cine <span id="typed" class="text-butaca"></span>
+          </p>
+
+          <p
+            class="mt-4 max-w-xl text-lg text-noche/70 dark:text-papel/70"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            Una sala, una taquilla y butacas de las de antes. Sin cadenas, sin
+            multisalas: películas elegidas una a una para el barrio.
+          </p>
+
+          <div
+            class="mt-10 flex flex-col gap-3 sm:flex-row"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <a
+              href="cartelera.html"
+              class="bg-butaca px-6 py-4 text-center font-mono text-sm font-bold uppercase tracking-widest text-noche transition hover:-translate-y-0.5 hover:bg-noche hover:text-papel focus-visible:-translate-y-0.5 dark:hover:bg-papel dark:hover:text-noche"
+            >
+              Ver cartelera →
+            </a>
+            <a
+              href="socio.html"
+              class="border border-noche px-6 py-4 text-center font-mono text-sm font-bold uppercase tracking-widest transition hover:-translate-y-0.5 hover:border-butaca hover:text-butaca focus-visible:-translate-y-0.5 dark:border-papel"
+            >
+              Hazte socio
+            </a>
+          </div>
+        </div>
+
+        <!-- tira de película animada -->
+        <div
+          class="h-10 animate-tira bg-noche bg-[radial-gradient(circle,#f2efe9_5px,transparent_6px)] bg-[length:36px_100%] bg-repeat-x"
+          aria-hidden="true"
+        ></div>
+      </section>
+
+      <!-- SERVICIOS -->
+      <section
+        id="servicios"
+        class="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-28"
+        aria-labelledby="titulo-servicios"
+      >
+        <div
+          class="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end"
+        >
+          <h2
+            id="titulo-servicios"
+            class="text-5xl leading-none font-black tracking-tighter uppercase md:text-8xl"
+            data-aos="fade-right"
+          >
+            Qué<br />hacemos
+          </h2>
+          <p
+            class="max-w-sm text-noche/70 dark:text-papel/70"
+            data-aos="fade-left"
+          >
+            Todo lo que pasa en la sala, de martes a domingo.
+          </p>
+        </div>
+
+        <div
+          class="grid gap-px border-y border-noche/15 bg-noche/15 sm:grid-cols-2 lg:grid-cols-4 dark:border-papel/15 dark:bg-papel/15"
+        >
+          <article
+            class="group bg-papel transition-colors hover:bg-butaca focus-within:bg-butaca dark:bg-noche dark:hover:bg-butaca"
+            data-aos="fade-up"
+          >
+            <a
+              href="cartelera.html"
+              class="flex h-full flex-col gap-6 p-8 group-hover:text-noche"
+            >
+              <p
+                class="font-mono text-xs uppercase tracking-widest text-butaca group-hover:text-noche"
+              >
+                (01)
+              </p>
+              <h3 class="text-3xl leading-none font-black uppercase">
+                Cartelera en VOSE
+              </h3>
+              <p
+                class="text-noche/70 group-hover:text-noche dark:text-papel/70"
+              >
+                Cine reciente y clásicos en versión original subtitulada.
+              </p>
+              <span class="mt-auto font-mono text-xs uppercase tracking-widest"
+                >Ver horarios →</span
+              >
+            </a>
+          </article>
+          <article
+            class="group bg-papel transition-colors hover:bg-butaca focus-within:bg-butaca dark:bg-noche dark:hover:bg-butaca"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <a
+              href="socio.html"
+              class="flex h-full flex-col gap-6 p-8 group-hover:text-noche"
+            >
+              <p
+                class="font-mono text-xs uppercase tracking-widest text-butaca group-hover:text-noche"
+              >
+                (02)
+              </p>
+              <h3 class="text-3xl leading-none font-black uppercase">
+                Cineclub
+              </h3>
+              <p
+                class="text-noche/70 group-hover:text-noche dark:text-papel/70"
+              >
+                Una película al mes elegida por los socios, con coloquio al
+                terminar.
+              </p>
+              <span class="mt-auto font-mono text-xs uppercase tracking-widest"
+                >Hazte socio →</span
+              >
+            </a>
+          </article>
+          <article
+            class="group bg-papel transition-colors hover:bg-butaca focus-within:bg-butaca dark:bg-noche dark:hover:bg-butaca"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <a
+              href="cartelera.html#horarios"
+              class="flex h-full flex-col gap-6 p-8 group-hover:text-noche"
+            >
+              <p
+                class="font-mono text-xs uppercase tracking-widest text-butaca group-hover:text-noche"
+              >
+                (03)
+              </p>
+              <h3 class="text-3xl leading-none font-black uppercase">
+                Matinales
+              </h3>
+              <p
+                class="text-noche/70 group-hover:text-noche dark:text-papel/70"
+              >
+                Sábados y domingos a las 12:00, para ir con toda la familia.
+              </p>
+              <span class="mt-auto font-mono text-xs uppercase tracking-widest"
+                >Ver sesiones →</span
+              >
+            </a>
+          </article>
+          <article
+            class="group bg-papel transition-colors hover:bg-butaca focus-within:bg-butaca dark:bg-noche dark:hover:bg-butaca"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <a
+              href="contacto.html"
+              class="flex h-full flex-col gap-6 p-8 group-hover:text-noche"
+            >
+              <p
+                class="font-mono text-xs uppercase tracking-widest text-butaca group-hover:text-noche"
+              >
+                (04)
+              </p>
+              <h3 class="text-3xl leading-none font-black uppercase">
+                Alquila la sala
+              </h3>
+              <p
+                class="text-noche/70 group-hover:text-noche dark:text-papel/70"
+              >
+                Presentaciones, cumpleaños, rodajes o proyecciones privadas.
+              </p>
+              <span class="mt-auto font-mono text-xs uppercase tracking-widest"
+                >Pide presupuesto →</span
+              >
+            </a>
+          </article>
+        </div>
+      </section>
+
+      <!-- NOVEDADES Y OFERTAS (Swiper) -->
+      <section
+        id="novedades"
+        class="border-t border-noche/15 py-20 md:py-28 dark:border-papel/15"
+        aria-labelledby="titulo-novedades"
+      >
+        <div
+          class="mx-auto mb-10 flex max-w-7xl flex-col justify-between gap-4 px-5 md:flex-row md:items-end md:px-10"
+        >
+          <h2
+            id="titulo-novedades"
+            class="text-5xl leading-none font-black tracking-tighter uppercase md:text-8xl"
+            data-aos="fade-right"
+          >
+            Esta<br /><span class="text-butaca">semana</span>
+          </h2>
+          <p
+            class="font-mono text-xs uppercase tracking-widest text-gris"
+            data-aos="fade-left"
+          >
+            Desliza para ver más →
+          </p>
+        </div>
+
+        <div class="swiper novedades px-5! md:px-10!" data-aos="fade-up">
+          <div class="swiper-wrapper">
+            <article class="swiper-slide">
+              <div
+                class="ticket flex h-full flex-col gap-5 bg-butaca p-8 text-noche"
+              >
+                <p class="font-mono text-xs uppercase tracking-widest">
+                  Oferta
+                </p>
+                <h3 class="text-4xl leading-none font-black uppercase">
+                  Miércoles a 4 €
+                </h3>
+                <div
+                  class="border-t-2 border-dashed border-current opacity-35"
+                ></div>
+                <p>
+                  Día del espectador: todas las sesiones del miércoles al mismo
+                  precio.
+                </p>
+              </div>
+            </article>
+            <article class="swiper-slide">
+              <div
+                class="ticket flex h-full flex-col gap-5 bg-noche p-8 text-papel dark:bg-papel dark:text-noche"
+              >
+                <p
+                  class="font-mono text-xs uppercase tracking-widest text-butaca"
+                >
+                  Socios
+                </p>
+                <h3 class="text-4xl leading-none font-black uppercase">
+                  Entradas a 3,5 €
+                </h3>
+                <div
+                  class="border-t-2 border-dashed border-current opacity-35"
+                ></div>
+                <p>
+                  Siempre, en cualquier sesión. Y en el cineclub votas la
+                  película del mes.
+                </p>
+              </div>
+            </article>
+            <article class="swiper-slide">
+              <div
+                class="ticket flex h-full flex-col gap-5 bg-papel p-8 text-noche ring-1 ring-noche/20 ring-inset dark:bg-[#2a2622] dark:text-papel"
+              >
+                <p
+                  class="font-mono text-xs uppercase tracking-widest text-butaca"
+                >
+                  Novedad · VOSE
+                </p>
+                <h3 class="text-4xl leading-none font-black uppercase">
+                  Perfect Days
+                </h3>
+                <div
+                  class="border-t-2 border-dashed border-current opacity-35"
+                ></div>
+                <p>
+                  Lo nuevo de Wim Wenders, de miércoles a domingo. Viernes en
+                  sesión golfa, a las 22:30.
+                </p>
+              </div>
+            </article>
+            <article class="swiper-slide">
+              <div
+                class="ticket flex h-full flex-col gap-5 bg-butaca p-8 text-noche"
+              >
+                <p class="font-mono text-xs uppercase tracking-widest">
+                  Clásico
+                </p>
+                <h3 class="text-4xl leading-none font-black uppercase">
+                  El espíritu de la colmena
+                </h3>
+                <div
+                  class="border-t-2 border-dashed border-current opacity-35"
+                ></div>
+                <p>
+                  Víctor Erice, 1973. Martes a las 18:00 y jueves a las 20:15.
+                </p>
+              </div>
+            </article>
+            <article class="swiper-slide">
+              <div
+                class="ticket flex h-full flex-col gap-5 bg-noche p-8 text-papel dark:bg-papel dark:text-noche"
+              >
+                <p
+                  class="font-mono text-xs uppercase tracking-widest text-butaca"
+                >
+                  Familias
+                </p>
+                <h3 class="text-4xl leading-none font-black uppercase">
+                  Matinal del sábado
+                </h3>
+                <div
+                  class="border-t-2 border-dashed border-current opacity-35"
+                ></div>
+                <p>
+                  Cinco lobitos, sábado a las 12:00. Café para los mayores,
+                  palomitas para todos.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- HORARIO Y UBICACIÓN -->
+      <section
+        id="horario"
+        class="bg-noche text-papel dark:bg-papel dark:text-noche"
+        aria-labelledby="titulo-horario"
+      >
+        <div
+          class="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-2 md:px-10 md:py-28"
+        >
+          <div data-aos="fade-right">
+            <h2
+              id="titulo-horario"
+              class="mb-10 text-5xl leading-none font-black tracking-tighter uppercase md:text-7xl"
+            >
+              Horario
+            </h2>
+            <dl
+              class="divide-y divide-papel/20 border-y border-papel/20 dark:divide-noche/20 dark:border-noche/20"
+            >
+              <div class="flex justify-between py-4">
+                <dt class="font-mono text-sm uppercase tracking-widest">
+                  Lunes
+                </dt>
+                <dd class="font-bold text-butaca">Cerrado</dd>
+              </div>
+              <div class="flex justify-between py-4">
+                <dt class="font-mono text-sm uppercase tracking-widest">
+                  Martes a jueves
+                </dt>
+                <dd class="font-bold">17:00 – 23:30</dd>
+              </div>
+              <div class="flex justify-between py-4">
+                <dt class="font-mono text-sm uppercase tracking-widest">
+                  Viernes
+                </dt>
+                <dd class="font-bold">16:00 – 00:30</dd>
+              </div>
+              <div class="flex justify-between py-4">
+                <dt class="font-mono text-sm uppercase tracking-widest">
+                  Sábado y domingo
+                </dt>
+                <dd class="font-bold">11:00 – 00:30</dd>
+              </div>
+            </dl>
+            <p class="mt-4 text-sm text-papel/60 dark:text-noche/60">
+              La taquilla abre una hora antes de la primera sesión.
+            </p>
+          </div>
+
+          <div data-aos="fade-left">
+            <h2
+              class="mb-10 text-5xl leading-none font-black tracking-tighter uppercase md:text-7xl"
+            >
+              Dónde
+            </h2>
+            <address class="mb-6 text-2xl leading-tight font-bold not-italic">
+              Calle de Lavapiés, 27<br />28012 Madrid
+            </address>
+            <p class="mb-6 font-mono text-xs uppercase tracking-widest">
+              <span class="text-butaca">Metro</span> · Lavapiés (L3)
+            </p>
+            <div
+              class="group relative overflow-hidden border border-papel/20 dark:border-noche/20"
+            >
+              <iframe
+                title="Mapa de El Gallinero en Lavapiés, Madrid"
+                src="https://maps.google.com/maps?q=40.4087,-3.7010&z=16&output=embed"
+                class="h-72 w-full grayscale transition duration-700 group-hover:grayscale-0"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+            <a
+              href="contacto.html"
+              class="mt-6 inline-block font-mono text-sm uppercase tracking-widest underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
+              >Más formas de contacto →</a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
 
     <!-- FOOTER -->
-    <footer class=""></footer>
+    <footer class="border-t border-noche/15 dark:border-papel/15">
+      <div
+        class="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-3 md:px-10"
+      >
+        <div>
+          <p class="text-4xl font-black tracking-tighter uppercase">
+            El Gallinero<span class="animate-neon text-butaca">.</span>
+          </p>
+          <p class="mt-3 text-noche/70 dark:text-papel/70">
+            Cine de barrio en Lavapiés.
+          </p>
+        </div>
+        <div class="font-mono text-xs uppercase tracking-widest leading-loose">
+          <p>Calle de Lavapiés, 27 · Madrid</p>
+          <p>
+            <a
+              href="tel:+34910000000"
+              class="underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
+              >91 000 00 00</a
+            >
+          </p>
+          <p>
+            <a
+              href="mailto:hola@elgallinerocine.es"
+              class="normal-case underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
+              >hola@elgallinerocine.es</a
+            >
+          </p>
+        </div>
+        <ul
+          class="flex gap-6 font-mono text-xs uppercase tracking-widest md:justify-end"
+        >
+          <li>
+            <a
+              href="#"
+              class="underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
+              >Instagram</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
+              >Letterboxd</a
+            >
+          </li>
+          <li>
+            <a
+              href="#top"
+              class="arriba underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
+              >Arriba ↑</a
+            >
+          </li>
+        </ul>
+      </div>
+      <p
+        class="mx-auto max-w-7xl px-5 pb-10 font-mono text-[10px] uppercase tracking-widest text-gris md:px-10"
+      >
+        © <span class="anio"></span> El Gallinero · Cine de barrio
+      </p>
+    </footer>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script src="js/script.js"></script>
   </body>
 </html>
