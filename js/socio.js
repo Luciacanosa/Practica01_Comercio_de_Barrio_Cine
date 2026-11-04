@@ -2,13 +2,14 @@
 // BLOQUE COMÚN (igual en script.js, cartelera.js, socio.js y contacto.js)
 // =====================================================
 
-// ----- cursor personalizado -----
+// ----- cursor personalizado (punto rojo) -----
 $(document).mousemove(function (e) {
   $(".cursor-index").css({ left: e.clientX + "px", top: e.clientY + "px" });
 });
+// con "on" funciona también en botones creados desde JS
 $(document).on(
   "mouseenter",
-  "a, button, label, input, select, textarea",
+  "a, button, label, input, select, textarea, .burger > i",
   function () {
     $(".cursor-index")
       .addClass("scale-180 bg-transparent")
@@ -17,7 +18,7 @@ $(document).on(
 );
 $(document).on(
   "mouseleave",
-  "a, button, label, input, select, textarea",
+  "a, button, label, input, select, textarea, .burger > i",
   function () {
     $(".cursor-index")
       .removeClass("scale-180 bg-transparent")
@@ -25,22 +26,32 @@ $(document).on(
   },
 );
 
-// ----- header: enlace de la página actual en rojo -----
-const paginaActual = window.location.pathname.split("/").pop() || "index.html";
-$(".nav-link").each(function () {
-  if ($(this).attr("href") === paginaActual) {
-    $(this).addClass("text-butaca").attr("aria-current", "page");
+// menu hambuerguesa para el navbar
+// lógica del menu (simplemente el clik en un icono)
+// selección de elementos del html
+let burger = document.querySelector(".burger > i");
+let menu_opt = document.querySelector(".menu");
+// definimos evneto click sobre le botón del menú
+burger.addEventListener("click", function () {
+  burger.classList.toggle("fa-bars");
+  burger.classList.toggle("fa-times");
+  menu_opt.classList.toggle("menu-show");
+});
+
+// extra: que el icono del menú también funcione con el teclado (Enter o espacio)
+burger.addEventListener("keydown", function (e) {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    burger.click();
   }
 });
 
-// ----- header: menú móvil -----
-$("#menu-movil").removeClass("hidden").hide();
-$("#btn-menu").on("click", function () {
-  const abierto = $(this).attr("aria-expanded") === "true";
-  $("#menu-movil").slideToggle(250);
-  $(this)
-    .attr("aria-expanded", String(!abierto))
-    .text(abierto ? "Menú +" : "Cerrar –");
+// ----- header: enlace de la página actual en rojo -----
+const paginaActual = window.location.pathname.split("/").pop() || "index.html";
+$(".menu a").each(function () {
+  if ($(this).attr("href") === paginaActual) {
+    $(this).addClass("text-butaca").attr("aria-current", "page");
+  }
 });
 
 // ----- modo claro / oscuro (se recuerda al cambiar de página) -----
@@ -100,9 +111,11 @@ function actualizarResumen() {
 $(".btn-pago").on("click", function () {
   pago = $(this).data("pago");
   $(".btn-pago")
-    .removeClass("bg-butaca text-noche")
+    .removeClass("bg-butaca text-papel dark:text-noche")
     .attr("aria-pressed", "false");
-  $(this).addClass("bg-butaca text-noche").attr("aria-pressed", "true");
+  $(this)
+    .addClass("bg-butaca text-papel dark:text-noche")
+    .attr("aria-pressed", "true");
   actualizarPrecios();
 });
 
@@ -140,3 +153,14 @@ $("#form-socio").on("submit", function (e) {
 });
 
 actualizarPrecios();
+
+// ----- si vienes desde la ventana modal del inicio, el correo ya viene escrito -----
+const emailDesdeInicio = new URLSearchParams(window.location.search).get(
+  "email",
+);
+if (emailDesdeInicio) {
+  $('#form-socio [name="email"]').val(emailDesdeInicio);
+  $(window).on("load", function () {
+    $("html, body").animate({ scrollTop: $("#alta").offset().top - 70 }, 700);
+  });
+}

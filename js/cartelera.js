@@ -1,32 +1,72 @@
-// ===== CURSOR =====
+// =====================================================
+// BLOQUE COMÚN (igual en script.js, cartelera.js, socio.js y contacto.js)
+// =====================================================
+
+// ----- cursor personalizado (punto rojo) -----
 $(document).mousemove(function (e) {
   $(".cursor-index").css({ left: e.clientX + "px", top: e.clientY + "px" });
 });
+// con "on" funciona también en botones creados desde JS
+$(document).on(
+  "mouseenter",
+  "a, button, label, input, select, textarea, .burger > i",
+  function () {
+    $(".cursor-index")
+      .addClass("scale-180 bg-transparent")
+      .removeClass("bg-butaca");
+  },
+);
+$(document).on(
+  "mouseleave",
+  "a, button, label, input, select, textarea, .burger > i",
+  function () {
+    $(".cursor-index")
+      .removeClass("scale-180 bg-transparent")
+      .addClass("bg-butaca");
+  },
+);
 
-// (con "on" funciona también en los botones que se crean desde JS)
-$(document).on("mouseenter", "a, button", function () {
-  $(".cursor-index")
-    .addClass("scale-180 bg-transparent")
-    .removeClass("bg-[#6e0000]");
-});
-$(document).on("mouseleave", "a, button", function () {
-  $(".cursor-index")
-    .removeClass("scale-180 bg-transparent")
-    .addClass("bg-[#6e0000]");
+// menu hambuerguesa para el navbar
+// lógica del menu (simplemente el clik en un icono)
+// selección de elementos del html
+let burger = document.querySelector(".burger > i");
+let menu_opt = document.querySelector(".menu");
+// definimos evneto click sobre le botón del menú
+burger.addEventListener("click", function () {
+  burger.classList.toggle("fa-bars");
+  burger.classList.toggle("fa-times");
+  menu_opt.classList.toggle("menu-show");
 });
 
-// ===== HEADER =====
+// extra: que el icono del menú también funcione con el teclado (Enter o espacio)
+burger.addEventListener("keydown", function (e) {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    burger.click();
+  }
+});
+
+// ----- header: enlace de la página actual en rojo -----
 const paginaActual = window.location.pathname.split("/").pop() || "index.html";
-$(".nav-link").each(function () {
+$(".menu a").each(function () {
   if ($(this).attr("href") === paginaActual) {
     $(this).addClass("text-butaca").attr("aria-current", "page");
   }
 });
 
-$("#menu-movil").removeClass("hidden").hide();
-$("#btn-menu").on("click", function () {
-  $("#menu-movil").slideToggle(250);
-  $(this).text($(this).text().trim() === "Menú +" ? "Cerrar –" : "Menú +");
+// ----- modo claro / oscuro (se recuerda al cambiar de página) -----
+$("#btn-tema").on("click", function () {
+  const oscuro = document.documentElement.classList.toggle("dark");
+  try {
+    localStorage.setItem("tema", oscuro ? "oscuro" : "claro");
+  } catch (e) {}
+});
+
+// ----- footer: año actual y volver arriba -----
+$(".anio").text(new Date().getFullYear());
+$(".arriba").on("click", function (e) {
+  e.preventDefault();
+  $("html, body").animate({ scrollTop: 0 }, 600);
 });
 
 // ===== CARTELERA =====
@@ -103,17 +143,19 @@ const dias = Object.keys(sesiones);
 // botones de los días
 dias.forEach(function (dia) {
   $("#dias").append(
-    `<button data-dia="${dia}" class="dia-btn border border-papel/30 px-4 py-2 font-mono text-xs uppercase tracking-widest transition-colors hover:border-butaca hover:text-butaca">${dia}</button>`,
+    `<button data-dia="${dia}" class="dia-btn border border-noche/30 px-4 py-2 font-mono text-xs dark:border-papel/30 uppercase tracking-widest transition-colors hover:border-butaca hover:text-butaca">${dia}</button>`,
   );
 });
 
 // muestra las sesiones del día elegido
 function mostrarDia(dia) {
   $(".dia-btn")
-    .removeClass("bg-butaca border-butaca text-noche hover:text-butaca")
+    .removeClass(
+      "bg-butaca border-butaca text-papel dark:text-noche hover:text-butaca",
+    )
     .addClass("hover:text-butaca");
   $(`.dia-btn[data-dia="${dia}"]`)
-    .addClass("bg-butaca border-butaca text-noche")
+    .addClass("bg-butaca border-butaca text-papel dark:text-noche")
     .removeClass("hover:text-butaca");
 
   const $lista = $("#sesiones");
@@ -128,7 +170,7 @@ function mostrarDia(dia) {
       const botones = horas
         .map(
           (h) =>
-            `<a href="#" class="border border-papel/30 px-4 py-2 font-mono text-sm transition-colors hover:border-butaca hover:bg-butaca hover:text-noche">${h}</a>`,
+            `<a href="#" class="border border-noche/30 px-4 py-2 font-mono text-sm transition-colors hover:border-butaca hover:bg-butaca hover:text-papel dark:border-papel/30 dark:hover:text-noche">${h}</a>`,
         )
         .join("");
       $lista.append(`
@@ -150,9 +192,3 @@ $("#dias").on("click", ".dia-btn", function () {
 
 // al entrar se muestra el primer día
 mostrarDia(dias[0]);
-
-// volver arriba suave
-$("#arriba").on("click", function (e) {
-  e.preventDefault();
-  $("html, body").animate({ scrollTop: 0 }, 600);
-});

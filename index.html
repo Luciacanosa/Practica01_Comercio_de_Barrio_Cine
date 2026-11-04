@@ -1,10 +1,8 @@
 <!doctype html>
 
 <html lang="es" class="scroll-smooth cursor-none **:cursor-none">
-  ======= luciabranch ======= =======
   <!doctype html>
 
-  main
   <html lang="es" class="dark">
     <head>
       <meta charset="UTF-8" />
@@ -15,22 +13,18 @@
         content="El Gallinero, cine de barrio en Lavapiés: cartelera en versión original, cineclub, matinales y alquiler de sala."
       />
 
-      <!-- modo claro/oscuro: se aplica antes de pintar la página para que no parpadee -->
-      <script>
-        try {
-          if (localStorage.getItem("tema") !== "claro")
-            document.documentElement.classList.add("dark");
-        } catch (e) {
-          document.documentElement.classList.add("dark");
-        }
-      </script>
-
       <!-- tipografías -->
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link
         href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap"
         rel="stylesheet"
+      />
+
+      <!-- Font Awesome: iconos del menú hamburguesa -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
       />
 
       <!-- jQuery -->
@@ -73,92 +67,70 @@
         class="cursor-index pointer-events-none fixed top-0 left-0 z-[9999] size-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-butaca bg-butaca transition-[scale,background-color] duration-200 ease-in-out"
       ></div>
 
-      <!-- HEADER Y NAV -->
+      <!-- Menú de navegación (igual en las 4 páginas) -->
       <header
-        class="sticky top-0 z-50 border-b border-noche/15 bg-papel/90 backdrop-blur dark:border-papel/15 dark:bg-noche/90"
+        class="navbar sticky top-0 z-50 flex items-center justify-between gap-4 border-b border-noche/15 bg-papel/90 px-5 py-3 backdrop-blur md:px-10 dark:border-papel/15 dark:bg-noche/90"
       >
+        <div class="logo">
+          <a href="index.html" class="group flex items-center gap-3">
+            <img
+              src="img/gallinero logo.png"
+              alt="Logo de El Gallinero"
+              width="800"
+              height="737"
+              class="h-10 w-auto transition-transform duration-300 group-hover:-rotate-6 group-focus-visible:-rotate-6 md:h-12 dark:brightness-[1.7]"
+            />
+            <span
+              class="text-lg leading-none font-black tracking-tight uppercase md:text-xl"
+              >El Gallinero<span class="text-butaca">.</span></span
+            >
+          </a>
+        </div>
+        <!-- Icono hamburguesa -->
+        <div class="burger md:hidden">
+          <i
+            class="fas fa-bars p-2 text-2xl text-noche transition-colors hover:text-butaca focus-visible:text-butaca dark:text-papel"
+            role="button"
+            tabindex="0"
+            aria-label="Abrir o cerrar el menú"
+          ></i>
+        </div>
+
+        <!-- Menú de navegación -->
         <nav
-          class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-10"
+          class="nav-links menu absolute inset-x-0 top-full hidden flex-col items-start border-b border-noche/15 bg-papel px-5 py-4 font-mono text-sm uppercase tracking-widest md:static md:flex md:flex-row md:items-center md:gap-8 md:border-0 md:bg-transparent md:p-0 md:text-xs dark:border-papel/15 dark:bg-noche md:dark:bg-transparent [&.menu-show]:flex"
           aria-label="Principal"
         >
           <a
             href="index.html"
-            class="text-xl font-black tracking-tight uppercase md:text-2xl"
+            class="py-3 underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current md:py-0"
+            >Inicio</a
           >
-            El Gallinero<span class="animate-neon text-butaca">.</span>
-          </a>
-
-          <ul
-            class="hidden gap-8 font-mono text-xs uppercase tracking-widest md:flex"
+          <a
+            href="cartelera.html"
+            class="py-3 underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current md:py-0"
+            >Cartelera</a
           >
-            <li>
-              <a
-                href="index.html"
-                class="nav-link underline decoration-transparent decoration-2 underline-offset-4 transition hover:decoration-current focus-visible:decoration-current hover:text-butaca"
-                >Inicio</a
-              >
-            </li>
-            <li>
-              <a
-                href="cartelera.html"
-                class="nav-link underline decoration-transparent decoration-2 underline-offset-4 transition hover:decoration-current focus-visible:decoration-current hover:text-butaca"
-                >Cartelera</a
-              >
-            </li>
-            <li>
-              <a
-                href="socio.html"
-                class="nav-link underline decoration-transparent decoration-2 underline-offset-4 transition hover:decoration-current focus-visible:decoration-current hover:text-butaca"
-                >Hazte socio</a
-              >
-            </li>
-            <li>
-              <a
-                href="contacto.html"
-                class="nav-link underline decoration-transparent decoration-2 underline-offset-4 transition hover:decoration-current focus-visible:decoration-current hover:text-butaca"
-                >Contacto</a
-              >
-            </li>
-          </ul>
-
-          <div class="flex items-center gap-4">
-            <!-- botón modo claro / oscuro -->
-            <button
-              id="btn-tema"
-              class="border border-noche/30 px-3 py-2 font-mono text-xs uppercase tracking-widest transition-colors hover:border-butaca hover:text-butaca dark:border-papel/30"
-              aria-label="Cambiar modo claro u oscuro"
-            >
-              <span class="dark:hidden">☾ Oscuro</span>
-              <span class="hidden dark:inline">☀ Claro</span>
-            </button>
-            <!-- botón menú móvil -->
-            <button
-              id="btn-menu"
-              class="font-mono text-xs uppercase tracking-widest md:hidden"
-              aria-label="Abrir menú"
-              aria-expanded="false"
-              aria-controls="menu-movil"
-            >
-              Menú +
-            </button>
-          </div>
+          <a
+            href="socio.html"
+            class="py-3 underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current md:py-0"
+            >Hazte socio</a
+          >
+          <a
+            href="contacto.html"
+            class="py-3 underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current md:py-0"
+            >Contacto</a
+          >
+          <!-- botón modo claro / oscuro -->
+          <button
+            id="btn-tema"
+            class="mt-2 whitespace-nowrap border border-noche/30 px-3 py-2 font-mono text-xs uppercase tracking-widest transition-colors hover:border-butaca hover:text-butaca md:mt-0 dark:border-papel/30"
+            aria-label="Cambiar modo claro u oscuro"
+          >
+            <span class="dark:hidden">☾ Oscuro</span>
+            <span class="hidden dark:inline">☀ Claro</span>
+          </button>
         </nav>
-
-        <ul
-          id="menu-movil"
-          class="hidden border-t border-noche/15 px-5 py-6 font-mono text-sm uppercase tracking-widest md:hidden dark:border-papel/15"
-        >
-          <li class="py-2"><a href="index.html" class="nav-link">Inicio</a></li>
-          <li class="py-2">
-            <a href="cartelera.html" class="nav-link">Cartelera</a>
-          </li>
-          <li class="py-2">
-            <a href="socio.html" class="nav-link">Hazte socio</a>
-          </li>
-          <li class="py-2">
-            <a href="contacto.html" class="nav-link">Contacto</a>
-          </li>
-        </ul>
       </header>
 
       <main class="overflow-x-hidden">

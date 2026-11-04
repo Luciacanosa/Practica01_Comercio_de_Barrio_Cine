@@ -1,557 +1,583 @@
 <!doctype html>
+
 <html lang="es" class="scroll-smooth cursor-none **:cursor-none">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contacto · El Gallinero · Cine de barrio</title>
+  <!doctype html>
 
-    <!-- tipografías -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+  <html lang="es" class="dark">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>El Gallinero · Cine de barrio en Lavapiés</title>
+      <meta
+        name="description"
+        content="El Gallinero, cine de barrio en Lavapiés: cartelera en versión original, cineclub, matinales y alquiler de sala."
+      />
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+      <!-- tipografías -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet"
+      />
 
-    <!-- AOS: animaciones al hacer scroll -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+      <!-- Font Awesome: iconos del menú hamburguesa -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      />
 
-    <!-- Swiper: cintas de texto en movimiento -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css"
-    />
+      <!-- jQuery -->
+      <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 
-    <!-- Tailwind CSS v4 CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+      <!-- AOS -->
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <!-- colores y fuentes del cine con @theme (Tailwind v4) -->
-    <style type="text/tailwindcss">
-      @theme {
-        --color-noche: #0e0e0e;
-        --color-butaca: #e63b2e;
-        --color-papel: #f2efe9;
-        --color-gris: #8a8780;
-        --font-cartel: "Archivo", sans-serif;
-        --font-mono: "Space Mono", monospace;
-      }
-    </style>
-  </head>
+      <!-- Swiper -->
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css"
+      />
 
-  <body
-    class="min-h-screen bg-noche font-cartel text-papel antialiased selection:bg-butaca selection:text-noche"
-  >
-    <!-- cursor personalizado: circulito rojo -->
-    <div
-      class="cursor-index pointer-events-none fixed top-0 left-0 z-[9999] size-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-[#6e0000] bg-[#6e0000] transition-[scale,background-color] duration-200 ease-in-out"
-    ></div>
+      <!-- Tailwind CSS v4 CDN -->
+      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <!-- HEADER Y NAV -->
-    <header
-      class="sticky top-0 z-50 border-b border-papel/15 bg-noche/90 backdrop-blur"
+      <!-- sistema de diseño con @theme + modo oscuro con la clase .dark -->
+      <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+        @theme {
+          --color-noche: #0e0e0e;
+          --color-butaca: #e63b2e;
+          --color-papel: #f2efe9;
+          --color-gris: #8a8780;
+          --font-cartel: "Archivo", sans-serif;
+          --font-mono: "Space Mono", monospace;
+        }
+      </style>
+
+      <!-- hoja de estilos propia: solo lo que Tailwind no resuelve (animaciones y forma de entrada) -->
+      <link rel="stylesheet" href="css/style.css" />
+    </head>
+
+    <body
+      class="min-h-screen bg-papel font-cartel text-noche transition-colors duration-300 selection:bg-butaca selection:text-noche dark:bg-noche dark:text-papel"
     >
-      <nav
-        class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-10"
+      <!-- cursor personalizado -->
+      <div
+        class="cursor-index pointer-events-none fixed top-0 left-0 z-[9999] size-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-butaca bg-butaca transition-[scale,background-color] duration-200 ease-in-out"
+      ></div>
+
+      <!-- Menú de navegación (igual en las 4 páginas) -->
+      <header
+        class="navbar sticky top-0 z-50 flex items-center justify-between gap-4 border-b border-noche/15 bg-papel/90 px-5 py-3 backdrop-blur md:px-10 dark:border-papel/15 dark:bg-noche/90"
       >
-        <a
-          href="index.html"
-          class="text-xl font-black tracking-tight uppercase md:text-2xl"
-        >
-          El Gallinero<span class="text-butaca">.</span>
-        </a>
-
-        <!-- botón menú móvil (jQuery) -->
-        <button
-          id="btn-menu"
-          class="font-mono text-xs uppercase tracking-widest md:hidden"
-          aria-label="Abrir menú"
-        >
-          Menú +
-        </button>
-
-        <ul
-          class="hidden gap-8 font-mono text-xs uppercase tracking-widest md:flex"
-        >
-          <li>
-            <a href="index.html" class="transition-colors hover:text-butaca"
-              >Inicio</a
+        <div class="logo">
+          <a href="index.html" class="group flex items-center gap-3">
+            <img
+              src="img/gallinero logo.png"
+              alt="Logo de El Gallinero"
+              width="800"
+              height="737"
+              class="h-10 w-auto transition-transform duration-300 group-hover:-rotate-6 group-focus-visible:-rotate-6 md:h-12 dark:brightness-[1.7]"
+            />
+            <span
+              class="text-lg leading-none font-black tracking-tight uppercase md:text-xl"
+              >El Gallinero<span class="text-butaca">.</span></span
             >
-          </li>
-          <li>
-            <a href="cartelera.html" class="transition-colors hover:text-butaca"
-              >Cartelera</a
-            >
-          </li>
-          <li>
-            <a href="socio.html" class="transition-colors hover:text-butaca"
-              >Socio</a
-            >
-          </li>
-          <li>
-            <a href="contactohtml" class="text-butaca" aria-current="page"
-              >Contacto</a
-            >
-          </li>
-        </ul>
-      </nav>
-
-      <!-- menú desplegable móvil -->
-      <ul
-        id="menu-movil"
-        class="hidden border-t border-papel/15 px-5 py-6 font-mono text-sm uppercase tracking-widest md:hidden"
-      >
-        <li class="py-2"><a href="index.html">Inicio</a></li>
-        <li class="py-2"><a href="cartelera.html">Cartelera</a></li>
-        <li class="py-2"><a href="ciclos.html">Ciclos</a></li>
-        <li class="py-2 text-butaca"><a href="contacto.html">Contacto</a></li>
-      </ul>
-    </header>
-
-    <main class="overflow-x-hidden">
-      <!-- CINTA 1 (Swiper): palabra gigante que se desliza sin parar -->
-      <section class="border-b border-papel/15 py-6" aria-hidden="true">
-        <div
-          class="swiper cinta [--swiper-wrapper-transition-timing-function:linear]"
-        >
-          <div class="swiper-wrapper">
-            <div
-              class="swiper-slide !w-auto text-[18vw] leading-none font-black tracking-tighter uppercase md:text-[11vw]"
-            >
-              Contacto
-            </div>
-            <div
-              class="swiper-slide !w-auto text-[18vw] leading-none font-black text-butaca md:text-[11vw]"
-            >
-              ✦
-            </div>
-            <div
-              class="swiper-slide !w-auto text-[18vw] leading-none font-black tracking-tighter uppercase [-webkit-text-stroke:2px_#f2efe9] text-transparent md:text-[11vw]"
-            >
-              Contacto
-            </div>
-            <div
-              class="swiper-slide !w-auto text-[18vw] leading-none font-black text-butaca md:text-[11vw]"
-            >
-              ✦
-            </div>
-            <div
-              class="swiper-slide !w-auto text-[18vw] leading-none font-black tracking-tighter uppercase md:text-[11vw]"
-            >
-              Contacto
-            </div>
-            <div
-              class="swiper-slide !w-auto text-[18vw] leading-none font-black text-butaca md:text-[11vw]"
-            >
-              ✦
-            </div>
-            <div
-              class="swiper-slide !w-auto text-[18vw] leading-none font-black tracking-tighter uppercase [-webkit-text-stroke:2px_#f2efe9] text-transparent md:text-[11vw]"
-            >
-              Contacto
-            </div>
-            <div
-              class="swiper-slide !w-auto text-[18vw] leading-none font-black text-butaca md:text-[11vw]"
-            >
-              ✦
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- INTRO con texto que se escribe solo (Typed.js) -->
-      <section class="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-28">
-        <p
-          class="mb-6 font-mono text-xs uppercase tracking-widest text-gris"
-          data-aos="fade-up"
-        >
-          somos muy de barrio, nos gusta charlar y nos encanta resolver vuestras
-          dudas
-        </p>
-        <h1
-          class="max-w-5xl text-4xl leading-[0.95] font-black tracking-tight uppercase md:text-7xl"
-          data-aos="fade-up"
-          data-aos-delay="100"
-        >
-          Escríbenos si
-          <span id="typed" class="text-butaca"></span>
-        </h1>
-      </section>
-
-      <!-- DATOS DE CONTACTO -->
-      <section
-        class="mx-auto grid max-w-7xl gap-px border-y border-papel/15 bg-papel/15 md:grid-cols-4"
-      >
-        <article class="bg-noche p-8 md:p-10" data-aos="fade-up">
-          <p
-            class="mb-6 font-mono text-xs uppercase tracking-widest text-butaca"
-          >
-            01 Dirección
-          </p>
-          <p class="text-2xl leading-tight font-bold">
-            Calle de Jedet, 67<br />28012 Madrid
-          </p>
-        </article>
-        <article
-          class="bg-noche p-8 md:p-10"
-          data-aos="fade-up"
-          data-aos-delay="100"
-        >
-          <p
-            class="mb-6 font-mono text-xs uppercase tracking-widest text-butaca"
-          >
-            02 Teléfono
-          </p>
-          <a
-            href="tel:+34910000000"
-            class="text-2xl leading-tight font-bold transition-colors hover:text-butaca"
-            >91 000 00 00</a
-          >
-          <p class="mt-2 text-sm text-gris">Horario de 11:00 a 22:30</p>
-        </article>
-        <article
-          class="bg-noche p-8 md:p-10"
-          data-aos="fade-up"
-          data-aos-delay="200"
-        >
-          <p
-            class="mb-6 font-mono text-xs uppercase tracking-widest text-butaca"
-          >
-            03 Correo
-          </p>
-          <a
-            href="mailto:hola@elgallinerocine.es"
-            class="text-lg leading-tight font-bold break-all transition-colors hover:text-butaca lg:text-xl"
-            >hola@elgallinerocine.es</a
-          >
-          <p class="mt-2 text-sm text-gris">Respondemos lo antes posible</p>
-        </article>
-        <article
-          class="bg-noche p-8 md:p-10"
-          data-aos="fade-up"
-          data-aos-delay="300"
-        >
-          <p
-            class="mb-6 font-mono text-xs uppercase tracking-widest text-butaca"
-          >
-            04 Horario
-          </p>
-          <p class="text-2xl leading-tight font-bold">Mar – Dom</p>
-          <p class="mt-2 text-sm text-gris">Lunes cerrado</p>
-        </article>
-      </section>
-
-      <!-- DÓNDE ESTAMOS: mapa -->
-      <section
-        id="donde"
-        class="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-28"
-      >
-        <div
-          class="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end"
-        >
-          <h2
-            class="text-5xl leading-none font-black tracking-tighter uppercase md:text-8xl"
-            data-aos="fade-right"
-          >
-            Dónde<br />estamos
-          </h2>
-          <ul
-            class="space-y-3 font-mono text-xs uppercase tracking-widest text-papel/70 md:text-right"
-            data-aos="fade-left"
-          >
-            <li><span class="text-butaca">Metro</span> · Lavapiés (L3)</li>
-            <li>
-              <span class="text-butaca">Bici</span> · Aparcabicis en la puerta
-            </li>
-            <li>
-              <span class="text-butaca">Accesible</span> · Entrada a pie de
-              calle
-            </li>
-          </ul>
-        </div>
-
-        <div
-          class="group relative overflow-hidden border border-papel/15"
-          data-aos="zoom-in"
-        >
-          <!-- el mapa en blanco y negro; se colorea al pasar el ratón -->
-          <iframe
-            title="Mapa de El Gallinero en Lavapiés, Madrid"
-            src="https://maps.google.com/maps?q=40.4087,-3.7010&z=16&output=embed"
-            class="h-[420px] w-full grayscale invert transition duration-700 group-hover:grayscale-0 group-hover:invert-0 md:h-[520px]"
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-          <a
-            href="https://www.google.com/maps/dir/?api=1&destination=40.4087,-3.7010"
-            target="_blank"
-            rel="noopener"
-            class="absolute bottom-5 left-5 bg-butaca px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest text-noche transition-colors hover:bg-papel"
-          >
-            Cómo llegar →
           </a>
         </div>
-      </section>
+        <!-- Icono hamburguesa -->
+        <div class="burger md:hidden">
+          <i
+            class="fas fa-bars p-2 text-2xl text-noche transition-colors hover:text-butaca focus-visible:text-butaca dark:text-papel"
+            role="button"
+            tabindex="0"
+            aria-label="Abrir o cerrar el menú"
+          ></i>
+        </div>
 
-      <!-- DUDAS FRECUENTES: acordeón con jQuery -->
-      <section class="border-t border-papel/15">
-        <div
-          class="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-[1fr_2fr] md:px-10 md:py-28"
+        <!-- Menú de navegación -->
+        <nav
+          class="nav-links menu absolute inset-x-0 top-full hidden flex-col items-start border-b border-noche/15 bg-papel px-5 py-4 font-mono text-sm uppercase tracking-widest md:static md:flex md:flex-row md:items-center md:gap-8 md:border-0 md:bg-transparent md:p-0 md:text-xs dark:border-papel/15 dark:bg-noche md:dark:bg-transparent [&.menu-show]:flex"
+          aria-label="Principal"
         >
-          <h2
-            class="text-5xl leading-none font-black tracking-tighter uppercase md:text-7xl"
+          <a
+            href="index.html"
+            class="py-3 underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current md:py-0"
+            >Inicio</a
+          >
+          <a
+            href="cartelera.html"
+            class="py-3 underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current md:py-0"
+            >Cartelera</a
+          >
+          <a
+            href="socio.html"
+            class="py-3 underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current md:py-0"
+            >Hazte socio</a
+          >
+          <a
+            href="contacto.html"
+            class="py-3 underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current md:py-0"
+            >Contacto</a
+          >
+          <!-- botón modo claro / oscuro -->
+          <button
+            id="btn-tema"
+            class="mt-2 whitespace-nowrap border border-noche/30 px-3 py-2 font-mono text-xs uppercase tracking-widest transition-colors hover:border-butaca hover:text-butaca md:mt-0 dark:border-papel/30"
+            aria-label="Cambiar modo claro u oscuro"
+          >
+            <span class="dark:hidden">☾ Oscuro</span>
+            <span class="hidden dark:inline">☀ Claro</span>
+          </button>
+        </nav>
+      </header>
+
+      <main class="overflow-x-hidden">
+        <!-- CINTA 1 (Swiper): palabra gigante que se desliza sin parar -->
+        <section class="border-b border-papel/15 py-6" aria-hidden="true">
+          <div
+            class="swiper cinta [--swiper-wrapper-transition-timing-function:linear]"
+          >
+            <div class="swiper-wrapper">
+              <div
+                class="swiper-slide !w-auto text-[18vw] leading-none font-black tracking-tighter uppercase md:text-[11vw]"
+              >
+                Contacto
+              </div>
+              <div
+                class="swiper-slide !w-auto text-[18vw] leading-none font-black text-butaca md:text-[11vw]"
+              >
+                ✦
+              </div>
+              <div
+                class="swiper-slide !w-auto text-[18vw] leading-none font-black tracking-tighter uppercase [-webkit-text-stroke:2px_#f2efe9] text-transparent md:text-[11vw]"
+              >
+                Contacto
+              </div>
+              <div
+                class="swiper-slide !w-auto text-[18vw] leading-none font-black text-butaca md:text-[11vw]"
+              >
+                ✦
+              </div>
+              <div
+                class="swiper-slide !w-auto text-[18vw] leading-none font-black tracking-tighter uppercase md:text-[11vw]"
+              >
+                Contacto
+              </div>
+              <div
+                class="swiper-slide !w-auto text-[18vw] leading-none font-black text-butaca md:text-[11vw]"
+              >
+                ✦
+              </div>
+              <div
+                class="swiper-slide !w-auto text-[18vw] leading-none font-black tracking-tighter uppercase [-webkit-text-stroke:2px_#f2efe9] text-transparent md:text-[11vw]"
+              >
+                Contacto
+              </div>
+              <div
+                class="swiper-slide !w-auto text-[18vw] leading-none font-black text-butaca md:text-[11vw]"
+              >
+                ✦
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- INTRO con texto que se escribe solo (Typed.js) -->
+        <section class="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-28">
+          <p
+            class="mb-6 font-mono text-xs uppercase tracking-widest text-gris"
             data-aos="fade-up"
           >
-            ¿Alguna<br /><span class="text-butaca">duda?</span>
-          </h2>
-
-          <div
-            class="divide-y divide-papel/15 border-y border-papel/15"
+            somos muy de barrio, nos gusta charlar y nos encanta resolver
+            vuestras dudas
+          </p>
+          <h1
+            class="max-w-5xl text-4xl leading-[0.95] font-black tracking-tight uppercase md:text-7xl"
             data-aos="fade-up"
             data-aos-delay="100"
           >
-            <div class="faq">
-              <button
-                class="faq-btn flex w-full items-center justify-between gap-6 py-6 text-left text-xl font-bold md:text-2xl"
-              >
-                ¿Por qué os llamáis El Gallinero?
-                <span
-                  class="faq-icono font-mono text-butaca transition-transform duration-300"
-                  >+</span
-                >
-              </button>
-              <p class="faq-texto hidden pb-6 text-papel/70">
-                Porque así se llamaba el piso de arriba de los cines y teatros
-                de antes: las butacas más baratas, las más ruidosas y las que
-                más disfrutaban la película. Eso queremos ser.
-              </p>
-            </div>
-            <div class="faq">
-              <button
-                class="faq-btn flex w-full items-center justify-between gap-6 py-6 text-left text-xl font-bold md:text-2xl"
-              >
-                ¿Se pueden comprar entradas en taquilla?
-                <span
-                  class="faq-icono font-mono text-butaca transition-transform duration-300"
-                  >+</span
-                >
-              </button>
-              <p class="faq-texto hidden pb-6 text-papel/70">
-                Sí. La taquilla abre una hora antes de la primera sesión.
-                También puedes reservar por teléfono o por correo y recogerlas
-                al llegar.
-              </p>
-            </div>
-            <div class="faq">
-              <button
-                class="faq-btn flex w-full items-center justify-between gap-6 py-6 text-left text-xl font-bold md:text-2xl"
-              >
-                ¿Las películas son en versión original?
-                <span
-                  class="faq-icono font-mono text-butaca transition-transform duration-300"
-                  >+</span
-                >
-              </button>
-              <p class="faq-texto hidden pb-6 text-papel/70">
-                La mayoría, en VOSE. Los domingos por la mañana hay sesión
-                familiar doblada.
-              </p>
-            </div>
-            <div class="faq">
-              <button
-                class="faq-btn flex w-full items-center justify-between gap-6 py-6 text-left text-xl font-bold md:text-2xl"
-              >
-                ¿Puedo alquilar la sala?
-                <span
-                  class="faq-icono font-mono text-butaca transition-transform duration-300"
-                  >+</span
-                >
-              </button>
-              <p class="faq-texto hidden pb-6 text-papel/70">
-                Claro: presentaciones, cumpleaños, rodajes o proyecciones
-                privadas. Escríbenos con la fecha y el número de personas y te
-                pasamos presupuesto.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+            Escríbenos si
+            <span id="typed" class="text-butaca"></span>
+          </h1>
+        </section>
 
-      <!-- FORMULARIO -->
-      <section id="formulario" class="bg-papel text-noche">
-        <div
-          class="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-2 md:px-10 md:py-28"
+        <!-- DATOS DE CONTACTO -->
+        <section
+          class="mx-auto grid max-w-7xl gap-px border-y border-papel/15 bg-papel/15 md:grid-cols-4"
         >
-          <div data-aos="fade-right">
+          <article class="bg-noche p-8 md:p-10" data-aos="fade-up">
             <p
               class="mb-6 font-mono text-xs uppercase tracking-widest text-butaca"
             >
-              ( Escríbenos )
+              01 Dirección
             </p>
+            <p class="text-2xl leading-tight font-bold">
+              Calle de Jedet, 67<br />28012 Madrid
+            </p>
+          </article>
+          <article
+            class="bg-noche p-8 md:p-10"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <p
+              class="mb-6 font-mono text-xs uppercase tracking-widest text-butaca"
+            >
+              02 Teléfono
+            </p>
+            <a
+              href="tel:+34910000000"
+              class="text-2xl leading-tight font-bold transition-colors hover:text-butaca"
+              >91 000 00 00</a
+            >
+            <p class="mt-2 text-sm text-gris">Horario de 11:00 a 22:30</p>
+          </article>
+          <article
+            class="bg-noche p-8 md:p-10"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <p
+              class="mb-6 font-mono text-xs uppercase tracking-widest text-butaca"
+            >
+              03 Correo
+            </p>
+            <a
+              href="mailto:hola@elgallinerocine.es"
+              class="text-lg leading-tight font-bold break-all transition-colors hover:text-butaca lg:text-xl"
+              >hola@elgallinerocine.es</a
+            >
+            <p class="mt-2 text-sm text-gris">Respondemos lo antes posible</p>
+          </article>
+          <article
+            class="bg-noche p-8 md:p-10"
+            data-aos="fade-up"
+            data-aos-delay="300"
+          >
+            <p
+              class="mb-6 font-mono text-xs uppercase tracking-widest text-butaca"
+            >
+              04 Horario
+            </p>
+            <p class="text-2xl leading-tight font-bold">Mar – Dom</p>
+            <p class="mt-2 text-sm text-gris">Lunes cerrado</p>
+          </article>
+        </section>
+
+        <!-- DÓNDE ESTAMOS: mapa -->
+        <section
+          id="donde"
+          class="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-28"
+        >
+          <div
+            class="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end"
+          >
+            <h2
+              class="text-5xl leading-none font-black tracking-tighter uppercase md:text-8xl"
+              data-aos="fade-right"
+            >
+              Dónde<br />estamos
+            </h2>
+            <ul
+              class="space-y-3 font-mono text-xs uppercase tracking-widest text-papel/70 md:text-right"
+              data-aos="fade-left"
+            >
+              <li><span class="text-butaca">Metro</span> · Lavapiés (L3)</li>
+              <li>
+                <span class="text-butaca">Bici</span> · Aparcabicis en la puerta
+              </li>
+              <li>
+                <span class="text-butaca">Accesible</span> · Entrada a pie de
+                calle
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="group relative overflow-hidden border border-papel/15"
+            data-aos="zoom-in"
+          >
+            <!-- el mapa en blanco y negro; se colorea al pasar el ratón -->
+            <iframe
+              title="Mapa de El Gallinero en Lavapiés, Madrid"
+              src="https://maps.google.com/maps?q=40.4087,-3.7010&z=16&output=embed"
+              class="h-[420px] w-full grayscale invert transition duration-700 group-hover:grayscale-0 group-hover:invert-0 md:h-[520px]"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+            <a
+              href="https://www.google.com/maps/dir/?api=1&destination=40.4087,-3.7010"
+              target="_blank"
+              rel="noopener"
+              class="absolute bottom-5 left-5 bg-butaca px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest text-noche transition-colors hover:bg-papel"
+            >
+              Cómo llegar →
+            </a>
+          </div>
+        </section>
+
+        <!-- DUDAS FRECUENTES: acordeón con jQuery -->
+        <section class="border-t border-papel/15">
+          <div
+            class="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-[1fr_2fr] md:px-10 md:py-28"
+          >
             <h2
               class="text-5xl leading-none font-black tracking-tighter uppercase md:text-7xl"
+              data-aos="fade-up"
             >
-              Déjanos<br />un mensaje
+              ¿Alguna<br /><span class="text-butaca">duda?</span>
             </h2>
-            <p class="mt-8 max-w-sm text-noche/70">
-              Para propuestas de películas, colaboraciones con el barrio, prensa
-              o lo que se te ocurra.
-            </p>
-          </div>
 
-          <form
-            id="form-contacto"
-            class="space-y-8"
-            data-aos="fade-left"
-            novalidate
+            <div
+              class="divide-y divide-papel/15 border-y border-papel/15"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <div class="faq">
+                <button
+                  class="faq-btn flex w-full items-center justify-between gap-6 py-6 text-left text-xl font-bold md:text-2xl"
+                >
+                  ¿Por qué os llamáis El Gallinero?
+                  <span
+                    class="faq-icono font-mono text-butaca transition-transform duration-300"
+                    >+</span
+                  >
+                </button>
+                <p class="faq-texto hidden pb-6 text-papel/70">
+                  Porque así se llamaba el piso de arriba de los cines y teatros
+                  de antes: las butacas más baratas, las más ruidosas y las que
+                  más disfrutaban la película. Eso queremos ser.
+                </p>
+              </div>
+              <div class="faq">
+                <button
+                  class="faq-btn flex w-full items-center justify-between gap-6 py-6 text-left text-xl font-bold md:text-2xl"
+                >
+                  ¿Se pueden comprar entradas en taquilla?
+                  <span
+                    class="faq-icono font-mono text-butaca transition-transform duration-300"
+                    >+</span
+                  >
+                </button>
+                <p class="faq-texto hidden pb-6 text-papel/70">
+                  Sí. La taquilla abre una hora antes de la primera sesión.
+                  También puedes reservar por teléfono o por correo y recogerlas
+                  al llegar.
+                </p>
+              </div>
+              <div class="faq">
+                <button
+                  class="faq-btn flex w-full items-center justify-between gap-6 py-6 text-left text-xl font-bold md:text-2xl"
+                >
+                  ¿Las películas son en versión original?
+                  <span
+                    class="faq-icono font-mono text-butaca transition-transform duration-300"
+                    >+</span
+                  >
+                </button>
+                <p class="faq-texto hidden pb-6 text-papel/70">
+                  La mayoría, en VOSE. Los domingos por la mañana hay sesión
+                  familiar doblada.
+                </p>
+              </div>
+              <div class="faq">
+                <button
+                  class="faq-btn flex w-full items-center justify-between gap-6 py-6 text-left text-xl font-bold md:text-2xl"
+                >
+                  ¿Puedo alquilar la sala?
+                  <span
+                    class="faq-icono font-mono text-butaca transition-transform duration-300"
+                    >+</span
+                  >
+                </button>
+                <p class="faq-texto hidden pb-6 text-papel/70">
+                  Claro: presentaciones, cumpleaños, rodajes o proyecciones
+                  privadas. Escríbenos con la fecha y el número de personas y te
+                  pasamos presupuesto.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- FORMULARIO -->
+        <section id="formulario" class="bg-papel text-noche">
+          <div
+            class="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-2 md:px-10 md:py-28"
           >
-            <label class="block">
-              <span class="font-mono text-xs uppercase tracking-widest"
-                >Nombre</span
+            <div data-aos="fade-right">
+              <p
+                class="mb-6 font-mono text-xs uppercase tracking-widest text-butaca"
               >
-              <input
-                name="nombre"
-                type="text"
-                required
-                class="mt-2 w-full border-b-2 border-noche bg-transparent py-3 text-xl outline-none placeholder:text-noche/30 focus:border-butaca"
-                placeholder="Tu nombre"
-              />
-            </label>
-            <label class="block">
-              <span class="font-mono text-xs uppercase tracking-widest"
-                >Correo</span
+                ( Escríbenos )
+              </p>
+              <h2
+                class="text-5xl leading-none font-black tracking-tighter uppercase md:text-7xl"
               >
-              <input
-                name="email"
-                type="email"
-                required
-                class="mt-2 w-full border-b-2 border-noche bg-transparent py-3 text-xl outline-none placeholder:text-noche/30 focus:border-butaca"
-                placeholder="tu@correo.com"
-              />
-            </label>
-            <label class="block">
-              <span class="font-mono text-xs uppercase tracking-widest"
-                >Asunto</span
-              >
-              <select
-                name="asunto"
-                class="mt-2 w-full border-b-2 border-noche bg-transparent py-3 text-xl outline-none focus:border-butaca"
-              >
-                <option>Duda general</option>
-                <option>Entradas y reservas</option>
-                <option>Alquiler de la sala</option>
-                <option>Propuesta de película</option>
-                <option>Prensa</option>
-              </select>
-            </label>
-            <label class="block">
-              <span class="font-mono text-xs uppercase tracking-widest"
-                >Mensaje</span
-              >
-              <textarea
-                name="mensaje"
-                rows="4"
-                required
-                class="mt-2 w-full resize-none border-b-2 border-noche bg-transparent py-3 text-xl outline-none placeholder:text-noche/30 focus:border-butaca"
-                placeholder="Cuéntanos…"
-              ></textarea>
-            </label>
+                Déjanos<br />un mensaje
+              </h2>
+              <p class="mt-8 max-w-sm text-noche/70">
+                Para propuestas de películas, colaboraciones con el barrio,
+                prensa o lo que se te ocurra.
+              </p>
+            </div>
 
-            <p
-              id="form-error"
-              class="hidden font-mono text-xs uppercase tracking-widest text-butaca"
+            <form
+              id="form-contacto"
+              class="space-y-8"
+              data-aos="fade-left"
+              novalidate
             >
-              Rellena todos los campos, porfa.
-            </p>
+              <label class="block">
+                <span class="font-mono text-xs uppercase tracking-widest"
+                  >Nombre</span
+                >
+                <input
+                  name="nombre"
+                  type="text"
+                  required
+                  class="mt-2 w-full border-b-2 border-noche bg-transparent py-3 text-xl outline-none placeholder:text-noche/30 focus:border-butaca"
+                  placeholder="Tu nombre"
+                />
+              </label>
+              <label class="block">
+                <span class="font-mono text-xs uppercase tracking-widest"
+                  >Correo</span
+                >
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  class="mt-2 w-full border-b-2 border-noche bg-transparent py-3 text-xl outline-none placeholder:text-noche/30 focus:border-butaca"
+                  placeholder="tu@correo.com"
+                />
+              </label>
+              <label class="block">
+                <span class="font-mono text-xs uppercase tracking-widest"
+                  >Asunto</span
+                >
+                <select
+                  name="asunto"
+                  class="mt-2 w-full border-b-2 border-noche bg-transparent py-3 text-xl outline-none focus:border-butaca"
+                >
+                  <option>Duda general</option>
+                  <option>Entradas y reservas</option>
+                  <option>Alquiler de la sala</option>
+                  <option>Propuesta de película</option>
+                  <option>Prensa</option>
+                </select>
+              </label>
+              <label class="block">
+                <span class="font-mono text-xs uppercase tracking-widest"
+                  >Mensaje</span
+                >
+                <textarea
+                  name="mensaje"
+                  rows="4"
+                  required
+                  class="mt-2 w-full resize-none border-b-2 border-noche bg-transparent py-3 text-xl outline-none placeholder:text-noche/30 focus:border-butaca"
+                  placeholder="Cuéntanos…"
+                ></textarea>
+              </label>
 
-            <button
-              type="submit"
-              class="w-full bg-noche py-5 font-mono text-sm font-bold uppercase tracking-widest text-papel transition-colors hover:bg-butaca hover:text-noche"
-            >
-              Enviar mensaje →
-            </button>
+              <p
+                id="form-error"
+                class="hidden font-mono text-xs uppercase tracking-widest text-butaca"
+              >
+                Rellena todos los campos, porfa.
+              </p>
 
-            <p id="form-ok" class="hidden text-2xl font-black uppercase">
-              ¡Gracias! Te contestamos muy pronto ✦
-            </p>
-          </form>
-        </div>
-      </section>
+              <button
+                type="submit"
+                class="w-full bg-noche py-5 font-mono text-sm font-bold uppercase tracking-widest text-papel transition-colors hover:bg-butaca hover:text-noche"
+              >
+                Enviar mensaje →
+              </button>
 
-      <!-- CINTA 2 (Swiper): en sentido contrario -->
-      <section
-        class="border-y border-papel/15 bg-butaca py-4 text-noche"
-        aria-hidden="true"
-      >
-        <div
-          class="swiper cinta-inversa [--swiper-wrapper-transition-timing-function:linear]"
+              <p id="form-ok" class="hidden text-2xl font-black uppercase">
+                ¡Gracias! Te contestamos muy pronto ✦
+              </p>
+            </form>
+          </div>
+        </section>
+
+        <!-- CINTA 2 (Swiper): en sentido contrario -->
+        <section
+          class="border-y border-papel/15 bg-butaca py-4 text-noche"
+          aria-hidden="true"
         >
-          <div class="swiper-wrapper">
-            <div
-              class="swiper-slide !w-auto text-3xl font-black uppercase md:text-5xl"
-            >
-              El Gallinero ✦ Cine de barrio ✦ Versión original ✦ Lavapiés ✦
-            </div>
-            <div
-              class="swiper-slide !w-auto text-3xl font-black uppercase md:text-5xl"
-            >
-              El Gallinero ✦ Cine de barrio ✦ Versión original ✦ Lavapiés ✦
-            </div>
-            <div
-              class="swiper-slide !w-auto text-3xl font-black uppercase md:text-5xl"
-            >
-              El Gallinero ✦ Cine de barrio ✦ Versión original ✦ Lavapiés ✦
-            </div>
-            <div
-              class="swiper-slide !w-auto text-3xl font-black uppercase md:text-5xl"
-            >
-              El Gallinero ✦ Cine de barrio ✦ Versión original ✦ Lavapiés ✦
+          <div
+            class="swiper cinta-inversa [--swiper-wrapper-transition-timing-function:linear]"
+          >
+            <div class="swiper-wrapper">
+              <div
+                class="swiper-slide !w-auto text-3xl font-black uppercase md:text-5xl"
+              >
+                El Gallinero ✦ Cine de barrio ✦ Versión original ✦ Lavapiés ✦
+              </div>
+              <div
+                class="swiper-slide !w-auto text-3xl font-black uppercase md:text-5xl"
+              >
+                El Gallinero ✦ Cine de barrio ✦ Versión original ✦ Lavapiés ✦
+              </div>
+              <div
+                class="swiper-slide !w-auto text-3xl font-black uppercase md:text-5xl"
+              >
+                El Gallinero ✦ Cine de barrio ✦ Versión original ✦ Lavapiés ✦
+              </div>
+              <div
+                class="swiper-slide !w-auto text-3xl font-black uppercase md:text-5xl"
+              >
+                El Gallinero ✦ Cine de barrio ✦ Versión original ✦ Lavapiés ✦
+              </div>
             </div>
           </div>
+        </section>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="mx-auto max-w-7xl px-5 py-12 md:px-10">
+        <div
+          class="flex flex-col justify-between gap-8 md:flex-row md:items-end"
+        >
+          <p class="text-4xl font-black tracking-tighter uppercase md:text-6xl">
+            El Gallinero<span class="text-butaca">.</span>
+          </p>
+          <ul class="flex gap-6 font-mono text-xs uppercase tracking-widest">
+            <li>
+              <a href="#" class="transition-colors hover:text-butaca"
+                >Instagram</a
+              >
+            </li>
+            <li>
+              <a href="#" class="transition-colors hover:text-butaca"
+                >Letterboxd</a
+              >
+            </li>
+            <li>
+              <a
+                href="#top"
+                id="arriba"
+                class="transition-colors hover:text-butaca"
+                >Volver arriba ↑</a
+              >
+            </li>
+          </ul>
         </div>
-      </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="mx-auto max-w-7xl px-5 py-12 md:px-10">
-      <div class="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-        <p class="text-4xl font-black tracking-tighter uppercase md:text-6xl">
-          El Gallinero<span class="text-butaca">.</span>
+        <p
+          class="mt-10 font-mono text-[10px] uppercase tracking-widest text-gris"
+        >
+          © El Gallinero · Cine de barrio en Lavapiés, Madrid
         </p>
-        <ul class="flex gap-6 font-mono text-xs uppercase tracking-widest">
-          <li>
-            <a href="#" class="transition-colors hover:text-butaca"
-              >Instagram</a
-            >
-          </li>
-          <li>
-            <a href="#" class="transition-colors hover:text-butaca"
-              >Letterboxd</a
-            >
-          </li>
-          <li>
-            <a
-              href="#top"
-              id="arriba"
-              class="transition-colors hover:text-butaca"
-              >Volver arriba ↑</a
-            >
-          </li>
-        </ul>
-      </div>
-      <p
-        class="mt-10 font-mono text-[10px] uppercase tracking-widest text-gris"
-      >
-        © El Gallinero · Cine de barrio en Lavapiés, Madrid
-      </p>
-    </footer>
+      </footer>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script src="js/contacto.js"></script>
-  </body>
+      <!-- Scripts -->
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+      <script src="js/contacto.js"></script>
+    </body>
+  </html>
 </html>

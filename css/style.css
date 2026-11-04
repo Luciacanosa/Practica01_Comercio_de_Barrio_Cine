@@ -199,3 +199,5 @@
     left: 0;
   }
 }
+/* est es para navbar modo oscuro claro */
+@custom-variant dark (&:where(.dark, .dark *)); /* dentro de <style type="text/tailwindcss">, encima de @theme */

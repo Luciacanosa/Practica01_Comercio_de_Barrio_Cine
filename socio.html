@@ -1,618 +1,615 @@
 <!doctype html>
+
 <html lang="es" class="scroll-smooth cursor-none **:cursor-none">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hazte socio · El Gallinero · Cine de barrio</title>
-    <meta
-      name="description"
-      content="Hazte socio de El Gallinero: entradas a 3,5 €, cineclub y preestrenos."
-    />
+  <!doctype html>
 
-    <!-- modo claro/oscuro: se aplica antes de pintar la página para que no parpadee -->
-    <script>
-      try {
-        if (localStorage.getItem("tema") !== "claro")
-          document.documentElement.classList.add("dark");
-      } catch (e) {
-        document.documentElement.classList.add("dark");
-      }
-    </script>
+  <html lang="es" class="dark">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>El Gallinero · Cine de barrio en Lavapiés</title>
+      <meta
+        name="description"
+        content="El Gallinero, cine de barrio en Lavapiés: cartelera en versión original, cineclub, matinales y alquiler de sala."
+      />
 
-    <!-- tipografías -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+      <!-- tipografías -->
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet"
+      />
 
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
+      <!-- Font Awesome: iconos del menú hamburguesa -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      />
 
-    <!-- AOS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+      <!-- jQuery -->
+      <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
 
-    <!-- Tailwind CSS v4 CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+      <!-- AOS -->
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <!-- sistema de diseño con @theme + modo oscuro con la clase .dark -->
-    <style type="text/tailwindcss">
-      @custom-variant dark (&:where(.dark, .dark *));
-      @theme {
-        --color-noche: #0e0e0e;
-        --color-butaca: #e63b2e;
-        --color-papel: #f2efe9;
-        --color-gris: #8a8780;
-        --font-cartel: "Archivo", sans-serif;
-        --font-mono: "Space Mono", monospace;
-      }
-    </style>
+      <!-- Swiper -->
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.css"
+      />
 
-    <!-- hoja de estilos propia: solo lo que Tailwind no resuelve (animaciones y forma de entrada) -->
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
+      <!-- Tailwind CSS v4 CDN -->
+      <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-  <body
-    class="min-h-screen bg-papel font-cartel text-noche transition-colors duration-300 selection:bg-butaca selection:text-noche dark:bg-noche dark:text-papel"
-  >
-    <!-- cursor personalizado -->
-    <div
-      class="cursor-index pointer-events-none fixed top-0 left-0 z-[9999] size-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-butaca bg-butaca transition-[scale,background-color] duration-200 ease-in-out"
-    ></div>
+      <!-- sistema de diseño con @theme + modo oscuro con la clase .dark -->
+      <style type="text/tailwindcss">
+        @custom-variant dark (&:where(.dark, .dark *));
+        @theme {
+          --color-noche: #0e0e0e;
+          --color-butaca: #e63b2e;
+          --color-papel: #f2efe9;
+          --color-gris: #8a8780;
+          --font-cartel: "Archivo", sans-serif;
+          --font-mono: "Space Mono", monospace;
+        }
+      </style>
 
-    <!-- HEADER Y NAV -->
-    <header
-      class="sticky top-0 z-50 border-b border-noche/15 bg-papel/90 backdrop-blur dark:border-papel/15 dark:bg-noche/90"
+      <!-- hoja de estilos propia: solo lo que Tailwind no resuelve (animaciones y forma de entrada) -->
+      <link rel="stylesheet" href="css/style.css" />
+    </head>
+
+    <body
+      class="min-h-screen bg-papel font-cartel text-noche transition-colors duration-300 selection:bg-butaca selection:text-noche dark:bg-noche dark:text-papel"
     >
-      <nav
-        class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 md:px-10"
-        aria-label="Principal"
+      <!-- cursor personalizado -->
+      <div
+        class="cursor-index pointer-events-none fixed top-0 left-0 z-[9999] size-5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-butaca bg-butaca transition-[scale,background-color] duration-200 ease-in-out"
+      ></div>
+
+      <!-- Menú de navegación (igual en las 4 páginas) -->
+      <header
+        class="navbar sticky top-0 z-50 flex items-center justify-between gap-4 border-b border-noche/15 bg-papel/90 px-5 py-3 backdrop-blur md:px-10 dark:border-papel/15 dark:bg-noche/90"
       >
-        <a
-          href="index.html"
-          class="text-xl font-black tracking-tight uppercase md:text-2xl"
-        >
-          El Gallinero<span class="animate-neon text-butaca">.</span>
-        </a>
+        <div class="logo">
+          <a href="index.html" class="group flex items-center gap-3">
+            <img
+              src="img/gallinero logo.png"
+              alt="Logo de El Gallinero"
+              width="800"
+              height="737"
+              class="h-10 w-auto transition-transform duration-300 group-hover:-rotate-6 group-focus-visible:-rotate-6 md:h-12 dark:brightness-[1.7]"
+            />
+            <span
+              class="text-lg leading-none font-black tracking-tight uppercase md:text-xl"
+              >El Gallinero<span class="text-butaca">.</span></span
+            >
+          </a>
+        </div>
+        <!-- Icono hamburguesa -->
+        <div class="burger md:hidden">
+          <i
+            class="fas fa-bars p-2 text-2xl text-noche transition-colors hover:text-butaca focus-visible:text-butaca dark:text-papel"
+            role="button"
+            tabindex="0"
+            aria-label="Abrir o cerrar el menú"
+          ></i>
+        </div>
 
-        <ul
-          class="hidden gap-8 font-mono text-xs uppercase tracking-widest md:flex"
+        <!-- Menú de navegación -->
+        <nav
+          class="nav-links menu absolute inset-x-0 top-full hidden flex-col items-start border-b border-noche/15 bg-papel px-5 py-4 font-mono text-sm uppercase tracking-widest md:static md:flex md:flex-row md:items-center md:gap-8 md:border-0 md:bg-transparent md:p-0 md:text-xs dark:border-papel/15 dark:bg-noche md:dark:bg-transparent [&.menu-show]:flex"
+          aria-label="Principal"
         >
-          <li>
-            <a
-              href="index.html"
-              class="nav-link underline decoration-transparent decoration-2 underline-offset-4 transition hover:decoration-current focus-visible:decoration-current hover:text-butaca"
-              >Inicio</a
-            >
-          </li>
-          <li>
-            <a
-              href="cartelera.html"
-              class="nav-link underline decoration-transparent decoration-2 underline-offset-4 transition hover:decoration-current focus-visible:decoration-current hover:text-butaca"
-              >Cartelera</a
-            >
-          </li>
-          <li>
-            <a
-              href="socio.html"
-              class="nav-link underline decoration-transparent decoration-2 underline-offset-4 transition hover:decoration-current focus-visible:decoration-current hover:text-butaca"
-              >Hazte socio</a
-            >
-          </li>
-          <li>
-            <a
-              href="contacto.html"
-              class="nav-link underline decoration-transparent decoration-2 underline-offset-4 transition hover:decoration-current focus-visible:decoration-current hover:text-butaca"
-              >Contacto</a
-            >
-          </li>
-        </ul>
-
-        <div class="flex items-center gap-4">
+          <a
+            href="index.html"
+            class="py-3 underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current md:py-0"
+            >Inicio</a
+          >
+          <a
+            href="cartelera.html"
+            class="py-3 underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current md:py-0"
+            >Cartelera</a
+          >
+          <a
+            href="socio.html"
+            class="py-3 underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current md:py-0"
+            >Hazte socio</a
+          >
+          <a
+            href="contacto.html"
+            class="py-3 underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current md:py-0"
+            >Contacto</a
+          >
+          <!-- botón modo claro / oscuro -->
           <button
             id="btn-tema"
-            class="border border-noche/30 px-3 py-2 font-mono text-xs uppercase tracking-widest transition-colors hover:border-butaca hover:text-butaca dark:border-papel/30"
+            class="mt-2 whitespace-nowrap border border-noche/30 px-3 py-2 font-mono text-xs uppercase tracking-widest transition-colors hover:border-butaca hover:text-butaca md:mt-0 dark:border-papel/30"
             aria-label="Cambiar modo claro u oscuro"
           >
             <span class="dark:hidden">☾ Oscuro</span>
             <span class="hidden dark:inline">☀ Claro</span>
           </button>
-          <button
-            id="btn-menu"
-            class="font-mono text-xs uppercase tracking-widest md:hidden"
-            aria-label="Abrir menú"
-            aria-expanded="false"
-            aria-controls="menu-movil"
-          >
-            Menú +
-          </button>
-        </div>
-      </nav>
-
-      <ul
-        id="menu-movil"
-        class="hidden border-t border-noche/15 px-5 py-6 font-mono text-sm uppercase tracking-widest md:hidden dark:border-papel/15"
-      >
-        <li class="py-2"><a href="index.html" class="nav-link">Inicio</a></li>
-        <li class="py-2">
-          <a href="cartelera.html" class="nav-link">Cartelera</a>
-        </li>
-        <li class="py-2">
-          <a href="socio.html" class="nav-link">Hazte socio</a>
-        </li>
-        <li class="py-2">
-          <a href="contacto.html" class="nav-link">Contacto</a>
-        </li>
-      </ul>
-    </header>
-
-    <main class="overflow-x-hidden">
-      <!-- PORTADA -->
-      <section
-        id="portada"
-        class="relative overflow-hidden border-b border-noche/15 dark:border-papel/15"
-      >
-        <div
-          class="pointer-events-none absolute -top-1/4 -right-1/4 h-[150%] w-2/3 origin-top-right animate-haz bg-linear-to-b from-butaca/25 via-butaca/5 to-transparent blur-2xl dark:from-papel/15 dark:via-papel/5"
-          aria-hidden="true"
-        ></div>
-        <div
-          class="relative mx-auto max-w-7xl px-5 pt-16 pb-20 md:px-10 md:pt-28 md:pb-28"
+        </nav>
+      </header>
+      <main class="overflow-x-hidden">
+        <!-- PORTADA -->
+        <section
+          id="portada"
+          class="relative overflow-hidden border-b border-noche/15 dark:border-papel/15"
         >
-          <p
-            class="mb-6 font-mono text-xs uppercase tracking-widest text-gris"
-            data-aos="fade-up"
-          >
-            ( Socios del Gallinero )
-          </p>
-          <h1
-            class="text-[15vw] leading-[0.85] font-black tracking-tighter uppercase md:text-[8.5rem]"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            Ven más.<br /><span class="text-butaca">Paga menos.</span>
-          </h1>
-          <p
-            class="mt-8 min-h-[2.5em] max-w-3xl text-2xl font-bold md:text-4xl"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            Ser socio es <span id="typed" class="text-butaca"></span>
-          </p>
-          <a
-            href="#planes"
-            class="mt-6 inline-block bg-butaca px-6 py-4 font-mono text-sm font-bold uppercase tracking-widest text-noche transition hover:-translate-y-0.5 hover:bg-noche hover:text-papel focus-visible:-translate-y-0.5 dark:hover:bg-papel dark:hover:text-noche"
-            data-aos="fade-up"
-            data-aos-delay="300"
-          >
-            Ver planes ↓
-          </a>
-        </div>
-        <div
-          class="h-10 animate-tira bg-noche bg-[radial-gradient(circle,#f2efe9_5px,transparent_6px)] bg-[length:36px_100%] bg-repeat-x"
-          aria-hidden="true"
-        ></div>
-      </section>
-
-      <!-- PLANES -->
-      <section
-        id="planes"
-        class="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-28"
-        aria-labelledby="titulo-planes"
-      >
-        <div
-          class="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end"
-        >
-          <h2
-            id="titulo-planes"
-            class="text-5xl leading-none font-black tracking-tighter uppercase md:text-8xl"
-            data-aos="fade-right"
-          >
-            Planes
-          </h2>
-
-          <!-- interruptor mensual / anual (jQuery) -->
           <div
-            class="flex border border-noche/30 font-mono text-xs uppercase tracking-widest dark:border-papel/30"
-            role="group"
-            aria-label="Forma de pago"
-            data-aos="fade-left"
+            class="pointer-events-none absolute -top-1/4 -right-1/4 h-[150%] w-2/3 origin-top-right animate-haz bg-linear-to-b from-butaca/25 via-butaca/5 to-transparent blur-2xl dark:from-papel/15 dark:via-papel/5"
+            aria-hidden="true"
+          ></div>
+          <div
+            class="relative mx-auto max-w-7xl px-5 pt-16 pb-20 md:px-10 md:pt-28 md:pb-28"
           >
-            <button
-              class="btn-pago bg-butaca px-5 py-3 text-noche"
-              data-pago="mes"
-              aria-pressed="true"
+            <p
+              class="mb-6 font-mono text-xs uppercase tracking-widest text-gris"
+              data-aos="fade-up"
             >
-              Mensual
-            </button>
-            <button
-              class="btn-pago px-5 py-3 transition-colors hover:text-butaca"
-              data-pago="anio"
-              aria-pressed="false"
-            >
-              Anual · 2 meses gratis
-            </button>
-          </div>
-        </div>
-
-        <div class="grid gap-6 md:grid-cols-3">
-          <!-- plan 1 -->
-          <article
-            class="plan ticket flex flex-col gap-6 bg-noche/5 p-8 transition hover:-translate-y-1 focus-within:-translate-y-1 dark:bg-papel/5"
-            data-plan="Butaca"
-            data-aos="fade-up"
-          >
-            <p class="font-mono text-xs uppercase tracking-widest text-butaca">
-              (01)
+              ( Socios del Gallinero )
             </p>
-            <h3 class="text-4xl leading-none font-black uppercase">Butaca</h3>
-            <p>
-              <span
-                class="precio text-6xl font-black tracking-tighter"
-                data-mes="4"
-                data-anio="40"
-                >4</span
-              >
-              <span class="periodo font-mono text-xs uppercase tracking-widest"
-                >€ / mes</span
-              >
-            </p>
-            <div
-              class="border-t-2 border-dashed border-current opacity-35"
-            ></div>
-            <ul class="space-y-2 text-noche/80 dark:text-papel/80">
-              <li>✦ Entradas a 3,5 € en todas las sesiones</li>
-              <li>✦ La programación del mes en tu correo</li>
-            </ul>
-            <button
-              class="elegir mt-auto border border-noche px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest transition hover:border-butaca hover:bg-butaca hover:text-noche dark:border-papel"
-            >
-              Elegir Butaca
-            </button>
-          </article>
-
-          <!-- plan 2 (destacado) -->
-          <article
-            class="plan ticket relative flex flex-col gap-6 bg-butaca p-8 text-noche transition hover:-translate-y-1 focus-within:-translate-y-1"
-            data-plan="Gallinero"
-            data-aos="fade-up"
-            data-aos-delay="100"
-          >
-            <span
-              class="animate-latido absolute top-6 right-6 bg-noche px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-papel"
-              >El más elegido</span
-            >
-            <p class="font-mono text-xs uppercase tracking-widest">(02)</p>
-            <h3 class="text-4xl leading-none font-black uppercase">
-              Gallinero
-            </h3>
-            <p>
-              <span
-                class="precio text-6xl font-black tracking-tighter"
-                data-mes="9"
-                data-anio="90"
-                >9</span
-              >
-              <span class="periodo font-mono text-xs uppercase tracking-widest"
-                >€ / mes</span
-              >
-            </p>
-            <div
-              class="border-t-2 border-dashed border-current opacity-35"
-            ></div>
-            <ul class="space-y-2">
-              <li>✦ 2 entradas al mes incluidas</li>
-              <li>✦ El resto, a 3,5 €</li>
-              <li>✦ Votas la película del cineclub</li>
-              <li>✦ Invitación a los preestrenos</li>
-            </ul>
-            <button
-              class="elegir mt-auto bg-noche px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest text-papel transition hover:bg-papel hover:text-noche"
-            >
-              Elegir Gallinero
-            </button>
-          </article>
-
-          <!-- plan 3 -->
-          <article
-            class="plan ticket flex flex-col gap-6 bg-noche/5 p-8 transition hover:-translate-y-1 focus-within:-translate-y-1 dark:bg-papel/5"
-            data-plan="Familia"
-            data-aos="fade-up"
-            data-aos-delay="200"
-          >
-            <p class="font-mono text-xs uppercase tracking-widest text-butaca">
-              (03)
-            </p>
-            <h3 class="text-4xl leading-none font-black uppercase">Familia</h3>
-            <p>
-              <span
-                class="precio text-6xl font-black tracking-tighter"
-                data-mes="14"
-                data-anio="140"
-                >14</span
-              >
-              <span class="periodo font-mono text-xs uppercase tracking-widest"
-                >€ / mes</span
-              >
-            </p>
-            <div
-              class="border-t-2 border-dashed border-current opacity-35"
-            ></div>
-            <ul class="space-y-2 text-noche/80 dark:text-papel/80">
-              <li>✦ 2 adultos y hasta 3 menores</li>
-              <li>✦ 4 entradas al mes incluidas</li>
-              <li>✦ Matinales de fin de semana sin coste para los menores</li>
-            </ul>
-            <button
-              class="elegir mt-auto border border-noche px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest transition hover:border-butaca hover:bg-butaca hover:text-noche dark:border-papel"
-            >
-              Elegir Familia
-            </button>
-          </article>
-        </div>
-      </section>
-
-      <!-- VENTAJAS -->
-      <section
-        class="border-y border-noche/15 dark:border-papel/15"
-        aria-labelledby="titulo-ventajas"
-      >
-        <div class="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-28">
-          <h2
-            id="titulo-ventajas"
-            class="mb-12 text-5xl leading-none font-black tracking-tighter uppercase md:text-7xl"
-            data-aos="fade-right"
-          >
-            Por qué<br /><span class="text-butaca">hacerse socio</span>
-          </h2>
-          <ul
-            class="grid gap-px bg-noche/15 sm:grid-cols-2 lg:grid-cols-4 dark:bg-papel/15"
-          >
-            <li class="bg-papel p-8 dark:bg-noche" data-aos="fade-up">
-              <p class="text-5xl font-black text-butaca">−40 %</p>
-              <p class="mt-3 text-noche/70 dark:text-papel/70">
-                Pagas 3,5 € por entrada en lugar de 6 €.
-              </p>
-            </li>
-            <li
-              class="bg-papel p-8 dark:bg-noche"
+            <h1
+              class="text-[15vw] leading-[0.85] font-black tracking-tighter uppercase md:text-[8.5rem]"
               data-aos="fade-up"
               data-aos-delay="100"
             >
-              <p class="text-5xl font-black text-butaca">1 voto</p>
-              <p class="mt-3 text-noche/70 dark:text-papel/70">
-                Eliges con el resto de socios la película del cineclub.
-              </p>
-            </li>
-            <li
-              class="bg-papel p-8 dark:bg-noche"
+              Ven más.<br /><span class="text-butaca">Paga menos.</span>
+            </h1>
+            <p
+              class="mt-8 min-h-[2.5em] max-w-3xl text-2xl font-bold md:text-4xl"
               data-aos="fade-up"
               data-aos-delay="200"
             >
-              <p class="text-5xl font-black text-butaca">Antes</p>
-              <p class="mt-3 text-noche/70 dark:text-papel/70">
-                Te enteras de los ciclos y preestrenos antes que nadie.
-              </p>
-            </li>
-            <li
-              class="bg-papel p-8 dark:bg-noche"
+              Ser socio es <span id="typed" class="text-butaca"></span>
+            </p>
+            <a
+              href="#planes"
+              class="mt-6 inline-block bg-butaca px-6 py-4 font-mono text-sm font-bold uppercase tracking-widest text-noche transition hover:-translate-y-0.5 hover:bg-noche hover:text-papel focus-visible:-translate-y-0.5 dark:hover:bg-papel dark:hover:text-noche"
               data-aos="fade-up"
               data-aos-delay="300"
             >
-              <p class="text-5xl font-black text-butaca">Barrio</p>
-              <p class="mt-3 text-noche/70 dark:text-papel/70">
-                Tu cuota ayuda a que un cine independiente siga abierto.
+              Ver planes ↓
+            </a>
+          </div>
+          <div
+            class="h-10 animate-tira bg-noche bg-[radial-gradient(circle,#f2efe9_5px,transparent_6px)] bg-[length:36px_100%] bg-repeat-x"
+            aria-hidden="true"
+          ></div>
+        </section>
+
+        <!-- PLANES -->
+        <section
+          id="planes"
+          class="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-28"
+          aria-labelledby="titulo-planes"
+        >
+          <div
+            class="mb-12 flex flex-col justify-between gap-6 md:flex-row md:items-end"
+          >
+            <h2
+              id="titulo-planes"
+              class="text-5xl leading-none font-black tracking-tighter uppercase md:text-8xl"
+              data-aos="fade-right"
+            >
+              Planes
+            </h2>
+
+            <!-- interruptor mensual / anual (jQuery) -->
+            <div
+              class="flex border border-noche/30 font-mono text-xs uppercase tracking-widest dark:border-papel/30"
+              role="group"
+              aria-label="Forma de pago"
+              data-aos="fade-left"
+            >
+              <button
+                class="btn-pago bg-butaca px-5 py-3 text-noche"
+                data-pago="mes"
+                aria-pressed="true"
+              >
+                Mensual
+              </button>
+              <button
+                class="btn-pago px-5 py-3 transition-colors hover:text-butaca"
+                data-pago="anio"
+                aria-pressed="false"
+              >
+                Anual · 2 meses gratis
+              </button>
+            </div>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-3">
+            <!-- plan 1 -->
+            <article
+              class="plan ticket flex flex-col gap-6 bg-noche/5 p-8 transition hover:-translate-y-1 focus-within:-translate-y-1 dark:bg-papel/5"
+              data-plan="Butaca"
+              data-aos="fade-up"
+            >
+              <p
+                class="font-mono text-xs uppercase tracking-widest text-butaca"
+              >
+                (01)
               </p>
+              <h3 class="text-4xl leading-none font-black uppercase">Butaca</h3>
+              <p>
+                <span
+                  class="precio text-6xl font-black tracking-tighter"
+                  data-mes="4"
+                  data-anio="40"
+                  >4</span
+                >
+                <span
+                  class="periodo font-mono text-xs uppercase tracking-widest"
+                  >€ / mes</span
+                >
+              </p>
+              <div
+                class="border-t-2 border-dashed border-current opacity-35"
+              ></div>
+              <ul class="space-y-2 text-noche/80 dark:text-papel/80">
+                <li>✦ Entradas a 3,5 € en todas las sesiones</li>
+                <li>✦ La programación del mes en tu correo</li>
+              </ul>
+              <button
+                class="elegir mt-auto border border-noche px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest transition hover:border-butaca hover:bg-butaca hover:text-noche dark:border-papel"
+              >
+                Elegir Butaca
+              </button>
+            </article>
+
+            <!-- plan 2 (destacado) -->
+            <article
+              class="plan ticket relative flex flex-col gap-6 bg-butaca p-8 text-noche transition hover:-translate-y-1 focus-within:-translate-y-1"
+              data-plan="Gallinero"
+              data-aos="fade-up"
+              data-aos-delay="100"
+            >
+              <span
+                class="animate-latido absolute top-6 right-6 bg-noche px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-papel"
+                >El más elegido</span
+              >
+              <p class="font-mono text-xs uppercase tracking-widest">(02)</p>
+              <h3 class="text-4xl leading-none font-black uppercase">
+                Gallinero
+              </h3>
+              <p>
+                <span
+                  class="precio text-6xl font-black tracking-tighter"
+                  data-mes="9"
+                  data-anio="90"
+                  >9</span
+                >
+                <span
+                  class="periodo font-mono text-xs uppercase tracking-widest"
+                  >€ / mes</span
+                >
+              </p>
+              <div
+                class="border-t-2 border-dashed border-current opacity-35"
+              ></div>
+              <ul class="space-y-2">
+                <li>✦ 2 entradas al mes incluidas</li>
+                <li>✦ El resto, a 3,5 €</li>
+                <li>✦ Votas la película del cineclub</li>
+                <li>✦ Invitación a los preestrenos</li>
+              </ul>
+              <button
+                class="elegir mt-auto bg-noche px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest text-papel transition hover:bg-papel hover:text-noche"
+              >
+                Elegir Gallinero
+              </button>
+            </article>
+
+            <!-- plan 3 -->
+            <article
+              class="plan ticket flex flex-col gap-6 bg-noche/5 p-8 transition hover:-translate-y-1 focus-within:-translate-y-1 dark:bg-papel/5"
+              data-plan="Familia"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <p
+                class="font-mono text-xs uppercase tracking-widest text-butaca"
+              >
+                (03)
+              </p>
+              <h3 class="text-4xl leading-none font-black uppercase">
+                Familia
+              </h3>
+              <p>
+                <span
+                  class="precio text-6xl font-black tracking-tighter"
+                  data-mes="14"
+                  data-anio="140"
+                  >14</span
+                >
+                <span
+                  class="periodo font-mono text-xs uppercase tracking-widest"
+                  >€ / mes</span
+                >
+              </p>
+              <div
+                class="border-t-2 border-dashed border-current opacity-35"
+              ></div>
+              <ul class="space-y-2 text-noche/80 dark:text-papel/80">
+                <li>✦ 2 adultos y hasta 3 menores</li>
+                <li>✦ 4 entradas al mes incluidas</li>
+                <li>✦ Matinales de fin de semana sin coste para los menores</li>
+              </ul>
+              <button
+                class="elegir mt-auto border border-noche px-5 py-3 font-mono text-xs font-bold uppercase tracking-widest transition hover:border-butaca hover:bg-butaca hover:text-noche dark:border-papel"
+              >
+                Elegir Familia
+              </button>
+            </article>
+          </div>
+        </section>
+
+        <!-- VENTAJAS -->
+        <section
+          class="border-y border-noche/15 dark:border-papel/15"
+          aria-labelledby="titulo-ventajas"
+        >
+          <div class="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-28">
+            <h2
+              id="titulo-ventajas"
+              class="mb-12 text-5xl leading-none font-black tracking-tighter uppercase md:text-7xl"
+              data-aos="fade-right"
+            >
+              Por qué<br /><span class="text-butaca">hacerse socio</span>
+            </h2>
+            <ul
+              class="grid gap-px bg-noche/15 sm:grid-cols-2 lg:grid-cols-4 dark:bg-papel/15"
+            >
+              <li class="bg-papel p-8 dark:bg-noche" data-aos="fade-up">
+                <p class="text-5xl font-black text-butaca">−40 %</p>
+                <p class="mt-3 text-noche/70 dark:text-papel/70">
+                  Pagas 3,5 € por entrada en lugar de 6 €.
+                </p>
+              </li>
+              <li
+                class="bg-papel p-8 dark:bg-noche"
+                data-aos="fade-up"
+                data-aos-delay="100"
+              >
+                <p class="text-5xl font-black text-butaca">1 voto</p>
+                <p class="mt-3 text-noche/70 dark:text-papel/70">
+                  Eliges con el resto de socios la película del cineclub.
+                </p>
+              </li>
+              <li
+                class="bg-papel p-8 dark:bg-noche"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                <p class="text-5xl font-black text-butaca">Antes</p>
+                <p class="mt-3 text-noche/70 dark:text-papel/70">
+                  Te enteras de los ciclos y preestrenos antes que nadie.
+                </p>
+              </li>
+              <li
+                class="bg-papel p-8 dark:bg-noche"
+                data-aos="fade-up"
+                data-aos-delay="300"
+              >
+                <p class="text-5xl font-black text-butaca">Barrio</p>
+                <p class="mt-3 text-noche/70 dark:text-papel/70">
+                  Tu cuota ayuda a que un cine independiente siga abierto.
+                </p>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- FORMULARIO DE ALTA -->
+        <section
+          id="alta"
+          class="bg-noche text-papel dark:bg-papel dark:text-noche"
+          aria-labelledby="titulo-alta"
+        >
+          <div
+            class="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-2 md:px-10 md:py-28"
+          >
+            <div data-aos="fade-right">
+              <p
+                class="mb-6 font-mono text-xs uppercase tracking-widest text-butaca"
+              >
+                ( Alta de socio )
+              </p>
+              <h2
+                id="titulo-alta"
+                class="text-5xl leading-none font-black tracking-tighter uppercase md:text-7xl"
+              >
+                Tu carnet<br />en un minuto
+              </h2>
+              <p class="mt-8 max-w-sm text-papel/70 dark:text-noche/70">
+                Rellena tus datos y recógelo en taquilla la próxima vez que
+                vengas.
+              </p>
+
+              <!-- resumen del precio (se actualiza con jQuery) -->
+              <p class="mt-10 font-mono text-xs uppercase tracking-widest">
+                Total
+              </p>
+              <p id="resumen" class="text-4xl font-black">9 € / mes</p>
+            </div>
+
+            <div>
+              <form
+                id="form-socio"
+                class="space-y-8"
+                data-aos="fade-left"
+                novalidate
+              >
+                <label class="block">
+                  <span class="font-mono text-xs uppercase tracking-widest"
+                    >Nombre y apellidos</span
+                  >
+                  <input
+                    name="nombre"
+                    type="text"
+                    required
+                    autocomplete="name"
+                    class="mt-2 w-full border-b-2 border-papel bg-transparent py-3 text-xl outline-none placeholder:text-papel/30 focus:border-butaca dark:border-noche dark:placeholder:text-noche/30"
+                    placeholder="Tu nombre"
+                  />
+                </label>
+                <label class="block">
+                  <span class="font-mono text-xs uppercase tracking-widest"
+                    >Correo</span
+                  >
+                  <input
+                    name="email"
+                    type="email"
+                    required
+                    autocomplete="email"
+                    class="mt-2 w-full border-b-2 border-papel bg-transparent py-3 text-xl outline-none placeholder:text-papel/30 focus:border-butaca dark:border-noche dark:placeholder:text-noche/30"
+                    placeholder="tu@correo.com"
+                  />
+                </label>
+                <label class="block">
+                  <span class="font-mono text-xs uppercase tracking-widest"
+                    >Plan</span
+                  >
+                  <select
+                    id="plan"
+                    name="plan"
+                    class="mt-2 w-full border-b-2 border-papel bg-noche py-3 text-xl outline-none focus:border-butaca dark:border-noche dark:bg-papel"
+                  >
+                    <option value="Butaca">Butaca</option>
+                    <option value="Gallinero" selected>Gallinero</option>
+                    <option value="Familia">Familia</option>
+                  </select>
+                </label>
+                <label class="flex items-start gap-3">
+                  <input
+                    name="normas"
+                    type="checkbox"
+                    required
+                    class="mt-1 size-5 accent-butaca"
+                  />
+                  <span class="text-sm"
+                    >Acepto las normas de la sala y que me escribáis con la
+                    programación.</span
+                  >
+                </label>
+
+                <p
+                  id="form-error"
+                  class="hidden font-mono text-xs uppercase tracking-widest text-butaca"
+                >
+                  Revisa tu nombre, un correo válido y acepta las normas.
+                </p>
+
+                <button
+                  type="submit"
+                  class="w-full bg-butaca py-5 font-mono text-sm font-bold uppercase tracking-widest text-noche transition hover:bg-papel focus-visible:bg-papel dark:hover:bg-noche dark:hover:text-papel"
+                >
+                  Quiero mi carnet →
+                </button>
+              </form>
+
+              <!-- carnet de socio que aparece al enviar (animación del CSS propio) -->
+              <div id="carnet" class="hidden">
+                <div class="animate-carnet ticket bg-butaca p-8 text-noche">
+                  <p class="font-mono text-xs uppercase tracking-widest">
+                    Carnet de socio · El Gallinero
+                  </p>
+                  <p
+                    id="carnet-nombre"
+                    class="mt-6 text-4xl leading-none font-black uppercase"
+                  ></p>
+                  <div
+                    class="my-6 border-t-2 border-dashed border-current opacity-35"
+                  ></div>
+                  <div
+                    class="flex justify-between font-mono text-sm uppercase tracking-widest"
+                  >
+                    <span>Plan <strong id="carnet-plan"></strong></span>
+                    <span>Nº <strong id="carnet-num"></strong></span>
+                  </div>
+                </div>
+                <p class="mt-6 text-papel/70 dark:text-noche/70">
+                  ¡Bienvenido al Gallinero! Te hemos enviado un correo de
+                  confirmación.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- FOOTER -->
+      <footer class="border-t border-noche/15 dark:border-papel/15">
+        <div
+          class="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-3 md:px-10"
+        >
+          <div>
+            <p class="text-4xl font-black tracking-tighter uppercase">
+              El Gallinero<span class="animate-neon text-butaca">.</span>
+            </p>
+            <p class="mt-3 text-noche/70 dark:text-papel/70">
+              Cine de barrio en Lavapiés.
+            </p>
+          </div>
+          <div
+            class="font-mono text-xs uppercase tracking-widest leading-loose"
+          >
+            <p>Calle de Lavapiés, 27 · Madrid</p>
+            <p>
+              <a
+                href="tel:+34910000000"
+                class="underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
+                >91 000 00 00</a
+              >
+            </p>
+            <p>
+              <a
+                href="mailto:hola@elgallinerocine.es"
+                class="normal-case underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
+                >hola@elgallinerocine.es</a
+              >
+            </p>
+          </div>
+          <ul
+            class="flex gap-6 font-mono text-xs uppercase tracking-widest md:justify-end"
+          >
+            <li>
+              <a
+                href="#"
+                class="underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
+                >Instagram</a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
+                >Letterboxd</a
+              >
+            </li>
+            <li>
+              <a
+                href="#top"
+                class="arriba underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
+                >Arriba ↑</a
+              >
             </li>
           </ul>
         </div>
-      </section>
-
-      <!-- FORMULARIO DE ALTA -->
-      <section
-        id="alta"
-        class="bg-noche text-papel dark:bg-papel dark:text-noche"
-        aria-labelledby="titulo-alta"
-      >
-        <div
-          class="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-2 md:px-10 md:py-28"
+        <p
+          class="mx-auto max-w-7xl px-5 pb-10 font-mono text-[10px] uppercase tracking-widest text-gris md:px-10"
         >
-          <div data-aos="fade-right">
-            <p
-              class="mb-6 font-mono text-xs uppercase tracking-widest text-butaca"
-            >
-              ( Alta de socio )
-            </p>
-            <h2
-              id="titulo-alta"
-              class="text-5xl leading-none font-black tracking-tighter uppercase md:text-7xl"
-            >
-              Tu carnet<br />en un minuto
-            </h2>
-            <p class="mt-8 max-w-sm text-papel/70 dark:text-noche/70">
-              Rellena tus datos y recógelo en taquilla la próxima vez que
-              vengas.
-            </p>
+          © <span class="anio"></span> El Gallinero · Cine de barrio
+        </p>
+      </footer>
 
-            <!-- resumen del precio (se actualiza con jQuery) -->
-            <p class="mt-10 font-mono text-xs uppercase tracking-widest">
-              Total
-            </p>
-            <p id="resumen" class="text-4xl font-black">9 € / mes</p>
-          </div>
-
-          <div>
-            <form
-              id="form-socio"
-              class="space-y-8"
-              data-aos="fade-left"
-              novalidate
-            >
-              <label class="block">
-                <span class="font-mono text-xs uppercase tracking-widest"
-                  >Nombre y apellidos</span
-                >
-                <input
-                  name="nombre"
-                  type="text"
-                  required
-                  autocomplete="name"
-                  class="mt-2 w-full border-b-2 border-papel bg-transparent py-3 text-xl outline-none placeholder:text-papel/30 focus:border-butaca dark:border-noche dark:placeholder:text-noche/30"
-                  placeholder="Tu nombre"
-                />
-              </label>
-              <label class="block">
-                <span class="font-mono text-xs uppercase tracking-widest"
-                  >Correo</span
-                >
-                <input
-                  name="email"
-                  type="email"
-                  required
-                  autocomplete="email"
-                  class="mt-2 w-full border-b-2 border-papel bg-transparent py-3 text-xl outline-none placeholder:text-papel/30 focus:border-butaca dark:border-noche dark:placeholder:text-noche/30"
-                  placeholder="tu@correo.com"
-                />
-              </label>
-              <label class="block">
-                <span class="font-mono text-xs uppercase tracking-widest"
-                  >Plan</span
-                >
-                <select
-                  id="plan"
-                  name="plan"
-                  class="mt-2 w-full border-b-2 border-papel bg-noche py-3 text-xl outline-none focus:border-butaca dark:border-noche dark:bg-papel"
-                >
-                  <option value="Butaca">Butaca</option>
-                  <option value="Gallinero" selected>Gallinero</option>
-                  <option value="Familia">Familia</option>
-                </select>
-              </label>
-              <label class="flex items-start gap-3">
-                <input
-                  name="normas"
-                  type="checkbox"
-                  required
-                  class="mt-1 size-5 accent-butaca"
-                />
-                <span class="text-sm"
-                  >Acepto las normas de la sala y que me escribáis con la
-                  programación.</span
-                >
-              </label>
-
-              <p
-                id="form-error"
-                class="hidden font-mono text-xs uppercase tracking-widest text-butaca"
-              >
-                Revisa tu nombre, un correo válido y acepta las normas.
-              </p>
-
-              <button
-                type="submit"
-                class="w-full bg-butaca py-5 font-mono text-sm font-bold uppercase tracking-widest text-noche transition hover:bg-papel focus-visible:bg-papel dark:hover:bg-noche dark:hover:text-papel"
-              >
-                Quiero mi carnet →
-              </button>
-            </form>
-
-            <!-- carnet de socio que aparece al enviar (animación del CSS propio) -->
-            <div id="carnet" class="hidden">
-              <div class="animate-carnet ticket bg-butaca p-8 text-noche">
-                <p class="font-mono text-xs uppercase tracking-widest">
-                  Carnet de socio · El Gallinero
-                </p>
-                <p
-                  id="carnet-nombre"
-                  class="mt-6 text-4xl leading-none font-black uppercase"
-                ></p>
-                <div
-                  class="my-6 border-t-2 border-dashed border-current opacity-35"
-                ></div>
-                <div
-                  class="flex justify-between font-mono text-sm uppercase tracking-widest"
-                >
-                  <span>Plan <strong id="carnet-plan"></strong></span>
-                  <span>Nº <strong id="carnet-num"></strong></span>
-                </div>
-              </div>
-              <p class="mt-6 text-papel/70 dark:text-noche/70">
-                ¡Bienvenido al Gallinero! Te hemos enviado un correo de
-                confirmación.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="border-t border-noche/15 dark:border-papel/15">
-      <div
-        class="mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-3 md:px-10"
-      >
-        <div>
-          <p class="text-4xl font-black tracking-tighter uppercase">
-            El Gallinero<span class="animate-neon text-butaca">.</span>
-          </p>
-          <p class="mt-3 text-noche/70 dark:text-papel/70">
-            Cine de barrio en Lavapiés.
-          </p>
-        </div>
-        <div class="font-mono text-xs uppercase tracking-widest leading-loose">
-          <p>Calle de Lavapiés, 27 · Madrid</p>
-          <p>
-            <a
-              href="tel:+34910000000"
-              class="underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
-              >91 000 00 00</a
-            >
-          </p>
-          <p>
-            <a
-              href="mailto:hola@elgallinerocine.es"
-              class="normal-case underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
-              >hola@elgallinerocine.es</a
-            >
-          </p>
-        </div>
-        <ul
-          class="flex gap-6 font-mono text-xs uppercase tracking-widest md:justify-end"
-        >
-          <li>
-            <a
-              href="#"
-              class="underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
-              >Instagram</a
-            >
-          </li>
-          <li>
-            <a
-              href="#"
-              class="underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
-              >Letterboxd</a
-            >
-          </li>
-          <li>
-            <a
-              href="#top"
-              class="arriba underline decoration-transparent decoration-2 underline-offset-4 transition hover:text-butaca hover:decoration-current focus-visible:decoration-current"
-              >Arriba ↑</a
-            >
-          </li>
-        </ul>
-      </div>
-      <p
-        class="mx-auto max-w-7xl px-5 pb-10 font-mono text-[10px] uppercase tracking-widest text-gris md:px-10"
-      >
-        © <span class="anio"></span> El Gallinero · Cine de barrio
-      </p>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
-    <script src="js/socio.js"></script>
-  </body>
+      <!-- Scripts -->
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+      <script src="js/socio.js"></script>
+    </body>
+  </html>
 </html>
